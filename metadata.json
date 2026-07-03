@@ -1,0 +1,8 @@
+{
+  "name": "Fintab ERP",
+  "description": "Hệ thống quản lý tài chính, thu chi, bán hàng, mua hàng và kho dành cho hộ kinh doanh cá thể.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
