@@ -38,6 +38,14 @@ import {
 export default function App() {
   const [currentTab, setCurrentTab] = useState<string>('overview');
 
+  // Preference states for wallpaper and card opacity
+  const [bgType, setBgType] = useState<string>(() => localStorage.getItem('fintab_bgType') || 'color');
+  const [bgValue, setBgValue] = useState<string>(() => localStorage.getItem('fintab_bgValue') || '#e5e7eb');
+  const [opacity, setOpacity] = useState<number>(() => {
+    const saved = localStorage.getItem('fintab_opacity');
+    return saved ? parseInt(saved, 10) : 95;
+  });
+
   // Core application states
   const [businessProfile, setBusinessProfile] = useState<BusinessProfile>(initialBusinessProfile);
   const [products, setProducts] = useState<Product[]>(initialProducts);
@@ -475,6 +483,21 @@ export default function App() {
           <CauHinhTab 
             businessProfile={businessProfile}
             onUpdateBusinessProfile={handleUpdateBusinessProfile}
+            bgType={bgType}
+            setBgType={(type) => {
+              setBgType(type);
+              localStorage.setItem('fintab_bgType', type);
+            }}
+            bgValue={bgValue}
+            setBgValue={(val) => {
+              setBgValue(val);
+              localStorage.setItem('fintab_bgValue', val);
+            }}
+            opacity={opacity}
+            setOpacity={(op) => {
+              setOpacity(op);
+              localStorage.setItem('fintab_opacity', String(op));
+            }}
           />
         );
       default:
@@ -486,22 +509,118 @@ export default function App() {
     }
   };
 
-  return (
-    <div className="flex bg-[#fafafa] min-h-screen">
-      {/* Navigation Sidebar */}
-      <Sidebar currentTab={currentTab} onTabChange={setCurrentTab} />
+  const renderBackground = () => {
+    switch (bgType) {
+      case 'image':
+        return (
+          <div 
+            className="absolute inset-0 w-full h-full bg-cover bg-center transition-all duration-700 ease-in-out" 
+            style={{ backgroundImage: `url(${bgValue})` }}
+          />
+        );
+      case 'video':
+        return (
+          <video 
+            key={bgValue}
+            src={bgValue}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out z-0"
+          />
+        );
+      case 'gradient': {
+        const isDynamic = bgValue.includes('linear-gradient(-45deg');
+        return (
+          <div 
+            className={`absolute inset-0 w-full h-full transition-all duration-700 ease-in-out ${isDynamic ? 'animate-gradient' : ''}`}
+            style={{ 
+              background: bgValue,
+              backgroundSize: isDynamic ? '400% 400%' : 'cover'
+            }}
+          />
+        );
+      }
+      case 'pattern': {
+        if (bgValue === 'orbiting-planets') {
+          return (
+            <div 
+              className="absolute inset-0 w-full h-full bg-cover bg-center overflow-hidden transition-all duration-700"
+              style={{ backgroundImage: `url('https://images.pexels.com/photos/1655166/pexels-photo-1655166.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500')` }}
+            >
+              <div className="absolute inset-0 bg-black/40" />
+              <div className="absolute top-1/4 left-1/4 w-40 h-40 rounded-full border border-white/10 animate-[spin_40s_linear_infinite]" />
+              <div className="absolute top-1/3 left-1/2 w-64 h-64 rounded-full border border-white/5 animate-[spin_60s_linear_infinite]" />
+              <div className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full border border-white/10 animate-[spin_80s_linear_infinite]" />
+            </div>
+          );
+        } else if (bgValue === 'dotted-pattern') {
+          return (
+            <div 
+              className="absolute inset-0 w-full h-full transition-all duration-700"
+              style={{ 
+                backgroundImage: 'radial-gradient(circle at 25% 25%, #a3b1c6 15%, transparent 15%), radial-gradient(circle at 75% 75%, #a3b1c6 15%, transparent 15%)',
+                backgroundSize: '10px 10px',
+                backgroundColor: '#e0e7ed'
+              }}
+            />
+          );
+        } else if (bgValue === 'dark-dotted-pattern') {
+          return (
+            <div 
+              className="absolute inset-0 w-full h-full transition-all duration-700"
+              style={{ 
+                backgroundImage: 'radial-gradient(circle, rgba(255, 255, 255, 0.15) 1px, transparent 1px)',
+                backgroundSize: '11px 11px',
+                backgroundColor: '#1d1f20'
+              }}
+            />
+          );
+        }
+        return null;
+      }
+      case 'color':
+      default:
+        return (
+          <div 
+            className="absolute inset-0 w-full h-full transition-all duration-700" 
+            style={{ backgroundColor: bgValue || '#e5e7eb' }}
+          />
+        );
+    }
+  };
 
-      {/* Main Layout Area */}
-      <div className="flex-1 flex flex-col min-w-0">
-        <Header 
-          businessProfile={businessProfile}
-          onChangeProfile={handleUpdateBusinessProfile}
-        />
-        
-        {/* Scrollable Tab panel */}
-        <main className="flex-1 overflow-y-auto">
-          {renderTabContent()}
-        </main>
+  return (
+    <div className="relative w-full h-screen overflow-hidden">
+      {/* Background Wallpaper Layer */}
+      {renderBackground()}
+
+      {/* Main Container Card with 3D shadow and 15px frame padding */}
+      <div className="p-[15px] h-screen box-border relative z-10 flex items-center justify-center">
+        <div 
+          className="flex w-full h-full rounded-[10px] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.3),_0_8px_25px_rgba(0,0,0,0.15)] border-[3px] backdrop-blur-md transition-all duration-500"
+          style={{ 
+            animation: 'colorChange 60s infinite',
+            backgroundColor: `rgba(250, 250, 250, ${opacity / 100})`
+          }}
+        >
+          {/* Navigation Sidebar */}
+          <Sidebar currentTab={currentTab} onTabChange={setCurrentTab} />
+
+          {/* Main Layout Area */}
+          <div className="flex-1 flex flex-col min-w-0 h-full">
+            <Header 
+              businessProfile={businessProfile}
+              onChangeProfile={handleUpdateBusinessProfile}
+            />
+            
+            {/* Scrollable Tab panel */}
+            <main className="flex-1 overflow-y-auto">
+              {renderTabContent()}
+            </main>
+          </div>
+        </div>
       </div>
     </div>
   );
