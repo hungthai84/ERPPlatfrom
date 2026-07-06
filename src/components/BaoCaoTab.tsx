@@ -116,17 +116,17 @@ export default function BaoCaoTab({
   };
 
   return (
-    <div className="p-6 space-y-6 font-sans bg-gray-50/50 min-h-[calc(100vh-4rem)]">
+    <div className="p-6 space-y-6 font-sans bg-gray-50 dark:bg-slate-900/50/50 min-h-[calc(100vh-4rem)]">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-xl font-bold text-gray-900 tracking-tight">Báo cáo tài chính</h1>
-          <p className="text-xs text-gray-500 mt-0.5">Phân tích chuyên sâu về doanh thu, giá vốn, chi phí và lợi nhuận thuần</p>
+          <h1 className="text-xl font-bold text-gray-900 dark:text-white tracking-tight">Báo cáo tài chính</h1>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Phân tích chuyên sâu về doanh thu, giá vốn, chi phí và lợi nhuận thuần</p>
         </div>
 
         {/* Year filter selector */}
-        <div className="flex items-center gap-1.5 bg-white border border-gray-200 rounded-lg px-3 py-1.5 shadow-xs">
-          <span className="text-xs text-gray-500 font-medium">Năm hạch toán:</span>
+        <div className="flex items-center gap-1.5 bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 rounded-lg px-3 py-1.5 shadow-xs">
+          <span className="text-xs text-gray-500 dark:text-gray-400 font-medium">Năm hạch toán:</span>
           <select
             value={selectedYear}
             onChange={(e) => setSelectedYear(e.target.value)}
@@ -141,27 +141,27 @@ export default function BaoCaoTab({
       {/* Visual Chart Section: Sales vs Expenses bar graphs using clean native SVG representation */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* SVG Sales vs Expenses Chart (Width 7) */}
-        <div className="lg:col-span-7 bg-white p-5 rounded-xl border border-gray-100 shadow-xs space-y-4">
+        <div className="lg:col-span-7 bg-white dark:bg-slate-900 p-5 rounded-xl border border-gray-100 dark:border-slate-800/50 shadow-xs space-y-4">
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="text-xs font-extrabold text-gray-800 uppercase tracking-wider">Doanh thu thuần vs Chi phí hoạt động</h3>
+              <h3 className="text-xs font-extrabold text-gray-800 dark:text-gray-200 uppercase tracking-wider">Doanh thu thuần vs Chi phí hoạt động</h3>
               <p className="text-[10px] text-gray-400 mt-0.5">Biểu đồ so sánh lũy kế các tháng trong Quý 3 / {selectedYear}</p>
             </div>
             {/* Legends */}
             <div className="flex gap-4 text-[10px] font-bold">
               <div className="flex items-center gap-1.5">
                 <div className="w-3 h-3 rounded bg-[#0a8251]"></div>
-                <span className="text-gray-600">Doanh thu thuần</span>
+                <span className="text-gray-600 dark:text-gray-400">Doanh thu thuần</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <div className="w-3 h-3 rounded bg-red-400"></div>
-                <span className="text-gray-600">Chi phí quản lý</span>
+                <span className="text-gray-600 dark:text-gray-400">Chi phí quản lý</span>
               </div>
             </div>
           </div>
 
           {/* Svg bar chart layout */}
-          <div className="h-56 flex items-end gap-12 border-b border-gray-100 pb-2 px-6 pt-4 justify-around relative">
+          <div className="h-56 flex items-end gap-12 border-b border-gray-100 dark:border-slate-800/50 pb-2 px-6 pt-4 justify-around relative">
             {/* Grid line helper backgrounds */}
             <div className="absolute inset-0 flex flex-col justify-between pointer-events-none opacity-[0.03] px-2 py-4">
               <div className="border-b border-gray-900 w-full"></div>
@@ -192,7 +192,7 @@ export default function BaoCaoTab({
                   </div>
                 </div>
               </div>
-              <span className="text-[10px] font-bold text-gray-500 whitespace-nowrap">Tháng 07</span>
+              <span className="text-[10px] font-bold text-gray-500 dark:text-gray-400 whitespace-nowrap">Tháng 07</span>
             </div>
 
             {/* August column group */}
@@ -215,7 +215,7 @@ export default function BaoCaoTab({
                   </div>
                 </div>
               </div>
-              <span className="text-[10px] font-bold text-gray-500 whitespace-nowrap">Tháng 08</span>
+              <span className="text-[10px] font-bold text-gray-500 dark:text-gray-400 whitespace-nowrap">Tháng 08</span>
             </div>
 
             {/* September column group */}
@@ -238,32 +238,32 @@ export default function BaoCaoTab({
                   </div>
                 </div>
               </div>
-              <span className="text-[10px] font-bold text-gray-500 whitespace-nowrap">Tháng 09</span>
+              <span className="text-[10px] font-bold text-gray-500 dark:text-gray-400 whitespace-nowrap">Tháng 09</span>
             </div>
           </div>
         </div>
 
         {/* Profitability Highlight metrics (Width 5) */}
-        <div className="lg:col-span-5 bg-white p-5 rounded-xl border border-gray-100 shadow-xs flex flex-col justify-between min-h-[220px]">
+        <div className="lg:col-span-5 bg-white dark:bg-slate-900 p-5 rounded-xl border border-gray-100 dark:border-slate-800/50 shadow-xs flex flex-col justify-between min-h-[220px]">
           <div>
-            <h3 className="text-xs font-extrabold text-gray-800 uppercase tracking-wider mb-3">Hiệu suất tài chính</h3>
+            <h3 className="text-xs font-extrabold text-gray-800 dark:text-gray-200 uppercase tracking-wider mb-3">Hiệu suất tài chính</h3>
             
             <div className="space-y-3.5 mt-2">
               <div className="flex justify-between items-center text-xs">
-                <span className="text-gray-500 font-semibold">Tỷ suất lợi nhuận gộp (GP %):</span>
+                <span className="text-gray-500 dark:text-gray-400 font-semibold">Tỷ suất lợi nhuận gộp (GP %):</span>
                 <span className="text-[#0a8251] font-extrabold bg-green-50 px-2 py-0.5 rounded">
                   {qNetRevenue > 0 ? Math.round((qGrossProfit / qNetRevenue) * 100) : 0}%
                 </span>
               </div>
               <div className="flex justify-between items-center text-xs">
-                <span className="text-gray-500 font-semibold">Tỷ suất lợi nhuận ròng (Net %):</span>
+                <span className="text-gray-500 dark:text-gray-400 font-semibold">Tỷ suất lợi nhuận ròng (Net %):</span>
                 <span className="text-purple-700 font-extrabold bg-purple-50 px-2 py-0.5 rounded">
                   {qNetRevenue > 0 ? Math.round((finalNetProfitAfterTax / qNetRevenue) * 100) : 0}%
                 </span>
               </div>
               <div className="flex justify-between items-center text-xs">
-                <span className="text-gray-500 font-semibold">Thuế môn bài & khoán ước tính:</span>
-                <span className="text-gray-800 font-bold">{formatVND(qTotalTax)}</span>
+                <span className="text-gray-500 dark:text-gray-400 font-semibold">Thuế môn bài & khoán ước tính:</span>
+                <span className="text-gray-800 dark:text-gray-200 font-bold">{formatVND(qTotalTax)}</span>
               </div>
             </div>
           </div>
@@ -278,16 +278,16 @@ export default function BaoCaoTab({
       </div>
 
       {/* Profit & Loss Statement (Báo cáo Kết quả Kinh doanh chi tiết) */}
-      <div className="bg-white rounded-xl border border-gray-100 shadow-xs overflow-hidden">
-        <div className="p-4 border-b border-gray-100 flex items-center justify-between">
-          <span className="text-xs font-bold text-gray-800 uppercase tracking-wider">Báo cáo Kết quả Hoạt động Kinh doanh chi tiết (Quý 3/{selectedYear})</span>
-          <span className="text-[10px] bg-gray-100 px-2 py-0.5 rounded text-gray-500 font-bold font-mono">ĐƠN VỊ: VNĐ</span>
+      <div className="bg-white dark:bg-slate-900 rounded-xl border border-gray-100 dark:border-slate-800/50 shadow-xs overflow-hidden">
+        <div className="p-4 border-b border-gray-100 dark:border-slate-800/50 flex items-center justify-between">
+          <span className="text-xs font-bold text-gray-800 dark:text-gray-200 uppercase tracking-wider">Báo cáo Kết quả Hoạt động Kinh doanh chi tiết (Quý 3/{selectedYear})</span>
+          <span className="text-[10px] bg-gray-100 dark:bg-slate-800 px-2 py-0.5 rounded text-gray-500 dark:text-gray-400 font-bold font-mono">ĐƠN VỊ: VNĐ</span>
         </div>
         
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="bg-gray-50 text-[10px] font-bold text-gray-500 uppercase tracking-wider border-b border-gray-100">
+              <tr className="bg-gray-50 dark:bg-slate-900/50 text-[10px] font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider border-b border-gray-100 dark:border-slate-800/50">
                 <th className="py-3 px-4">Chỉ tiêu hạch toán kế toán</th>
                 <th className="py-3 px-4 text-center">Tháng 07</th>
                 <th className="py-3 px-4 text-center">Tháng 08</th>
@@ -296,61 +296,61 @@ export default function BaoCaoTab({
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100 text-xs">
-              <tr className="hover:bg-gray-50/50">
-                <td className="py-2.5 px-4 font-semibold text-gray-800">1. Doanh thu bán hàng và cung cấp dịch vụ</td>
-                <td className="py-2.5 px-4 text-center text-gray-600">{formatVND(julyStats.grossRevenue)}</td>
-                <td className="py-2.5 px-4 text-center text-gray-600">{formatVND(augustStats.grossRevenue)}</td>
-                <td className="py-2.5 px-4 text-center text-gray-600">{formatVND(septemberStats.grossRevenue)}</td>
-                <td className="py-2.5 px-4 text-right font-bold text-gray-900">{formatVND(qGrossRevenue)}</td>
+              <tr className="hover:bg-gray-50 dark:bg-slate-900/50/50">
+                <td className="py-2.5 px-4 font-semibold text-gray-800 dark:text-gray-200">1. Doanh thu bán hàng và cung cấp dịch vụ</td>
+                <td className="py-2.5 px-4 text-center text-gray-600 dark:text-gray-400">{formatVND(julyStats.grossRevenue)}</td>
+                <td className="py-2.5 px-4 text-center text-gray-600 dark:text-gray-400">{formatVND(augustStats.grossRevenue)}</td>
+                <td className="py-2.5 px-4 text-center text-gray-600 dark:text-gray-400">{formatVND(septemberStats.grossRevenue)}</td>
+                <td className="py-2.5 px-4 text-right font-bold text-gray-900 dark:text-white">{formatVND(qGrossRevenue)}</td>
               </tr>
-              <tr className="hover:bg-gray-50/50 text-red-500">
+              <tr className="hover:bg-gray-50 dark:bg-slate-900/50/50 text-red-500">
                 <td className="py-2.5 px-4 font-semibold">2. Các khoản giảm trừ doanh thu (Chiết khấu, giảm giá)</td>
                 <td className="py-2.5 px-4 text-center font-medium">-{formatVND(julyStats.discounts)}</td>
                 <td className="py-2.5 px-4 text-center font-medium">-{formatVND(augustStats.discounts)}</td>
                 <td className="py-2.5 px-4 text-center font-medium">-{formatVND(septemberStats.discounts)}</td>
                 <td className="py-2.5 px-4 text-right font-bold">-{formatVND(qDiscounts)}</td>
               </tr>
-              <tr className="hover:bg-gray-50/50 bg-[#eaf4f0]/20 font-bold">
+              <tr className="hover:bg-gray-50 dark:bg-slate-900/50/50 bg-[#eaf4f0]/20 font-bold">
                 <td className="py-2.5 px-4 text-[#0a8251] font-extrabold">3. Doanh thu thuần về bán hàng và cung cấp dịch vụ</td>
                 <td className="py-2.5 px-4 text-center">{formatVND(julyStats.netRevenue)}</td>
                 <td className="py-2.5 px-4 text-center">{formatVND(augustStats.netRevenue)}</td>
                 <td className="py-2.5 px-4 text-center">{formatVND(septemberStats.netRevenue)}</td>
                 <td className="py-2.5 px-4 text-right text-[#0a8251] font-extrabold">{formatVND(qNetRevenue)}</td>
               </tr>
-              <tr className="hover:bg-gray-50/50">
-                <td className="py-2.5 px-4 text-gray-500">4. Giá vốn hàng bán (Chi phí nhập gỗ & mộc thô)</td>
-                <td className="py-2.5 px-4 text-center text-gray-600">{formatVND(julyStats.cogs)}</td>
-                <td className="py-2.5 px-4 text-center text-gray-600">{formatVND(augustStats.cogs)}</td>
-                <td className="py-2.5 px-4 text-center text-gray-600">{formatVND(septemberStats.cogs)}</td>
-                <td className="py-2.5 px-4 text-right font-bold text-gray-900">{formatVND(qCogs)}</td>
+              <tr className="hover:bg-gray-50 dark:bg-slate-900/50/50">
+                <td className="py-2.5 px-4 text-gray-500 dark:text-gray-400">4. Giá vốn hàng bán (Chi phí nhập gỗ & mộc thô)</td>
+                <td className="py-2.5 px-4 text-center text-gray-600 dark:text-gray-400">{formatVND(julyStats.cogs)}</td>
+                <td className="py-2.5 px-4 text-center text-gray-600 dark:text-gray-400">{formatVND(augustStats.cogs)}</td>
+                <td className="py-2.5 px-4 text-center text-gray-600 dark:text-gray-400">{formatVND(septemberStats.cogs)}</td>
+                <td className="py-2.5 px-4 text-right font-bold text-gray-900 dark:text-white">{formatVND(qCogs)}</td>
               </tr>
-              <tr className="hover:bg-gray-50/50 font-bold bg-blue-50/10">
+              <tr className="hover:bg-gray-50 dark:bg-slate-900/50/50 font-bold bg-blue-50/10">
                 <td className="py-2.5 px-4 text-blue-800 font-bold">5. Lợi nhuận gộp về bán hàng và cung cấp dịch vụ</td>
                 <td className="py-2.5 px-4 text-center">{formatVND(julyStats.grossProfit)}</td>
                 <td className="py-2.5 px-4 text-center">{formatVND(augustStats.grossProfit)}</td>
                 <td className="py-2.5 px-4 text-center">{formatVND(septemberStats.grossProfit)}</td>
                 <td className="py-2.5 px-4 text-right text-blue-900 font-extrabold">{formatVND(qGrossProfit)}</td>
               </tr>
-              <tr className="hover:bg-gray-50/50">
-                <td className="py-2.5 px-4 text-gray-500">6. Chi phí quản lý kinh doanh (Điện nước, thuê mặt bằng showroom, internet)</td>
-                <td className="py-2.5 px-4 text-center text-gray-600">{formatVND(julyStats.operatingExpenses)}</td>
-                <td className="py-2.5 px-4 text-center text-gray-600">{formatVND(augustStats.operatingExpenses)}</td>
-                <td className="py-2.5 px-4 text-center text-gray-600">{formatVND(septemberStats.operatingExpenses)}</td>
-                <td className="py-2.5 px-4 text-right font-bold text-gray-900">{formatVND(qExpenses)}</td>
+              <tr className="hover:bg-gray-50 dark:bg-slate-900/50/50">
+                <td className="py-2.5 px-4 text-gray-500 dark:text-gray-400">6. Chi phí quản lý kinh doanh (Điện nước, thuê mặt bằng showroom, internet)</td>
+                <td className="py-2.5 px-4 text-center text-gray-600 dark:text-gray-400">{formatVND(julyStats.operatingExpenses)}</td>
+                <td className="py-2.5 px-4 text-center text-gray-600 dark:text-gray-400">{formatVND(augustStats.operatingExpenses)}</td>
+                <td className="py-2.5 px-4 text-center text-gray-600 dark:text-gray-400">{formatVND(septemberStats.operatingExpenses)}</td>
+                <td className="py-2.5 px-4 text-right font-bold text-gray-900 dark:text-white">{formatVND(qExpenses)}</td>
               </tr>
-              <tr className="hover:bg-gray-50/50 font-extrabold bg-[#eaf4f0]/40">
-                <td className="py-3 px-4 text-gray-900 font-extrabold uppercase">7. LỢI NHUẬN TRƯỚC THUẾ KINH DOANH:</td>
+              <tr className="hover:bg-gray-50 dark:bg-slate-900/50/50 font-extrabold bg-[#eaf4f0]/40">
+                <td className="py-3 px-4 text-gray-900 dark:text-white font-extrabold uppercase">7. LỢI NHUẬN TRƯỚC THUẾ KINH DOANH:</td>
                 <td className="py-3 px-4 text-center">{formatVND(julyStats.netProfitBeforeTax)}</td>
                 <td className="py-3 px-4 text-center">{formatVND(augustStats.netProfitBeforeTax)}</td>
                 <td className="py-3 px-4 text-center">{formatVND(septemberStats.netProfitBeforeTax)}</td>
                 <td className="py-3 px-4 text-right text-emerald-800 font-extrabold">{formatVND(qNetProfit)}</td>
               </tr>
-              <tr className="hover:bg-gray-50/50 text-red-500">
+              <tr className="hover:bg-gray-50 dark:bg-slate-900/50/50 text-red-500">
                 <td className="py-2.5 px-4 font-semibold">8. Thuế GTGT + TNCN khoán hộ kinh doanh ước tính (Circular 40)</td>
                 <td colSpan={3} className="py-2.5 px-4"></td>
                 <td className="py-2.5 px-4 text-right font-extrabold">-{formatVND(qTotalTax)}</td>
               </tr>
-              <tr className="hover:bg-gray-50/50 font-extrabold bg-purple-50 border-t-2 border-purple-200">
+              <tr className="hover:bg-gray-50 dark:bg-slate-900/50/50 font-extrabold bg-purple-50 border-t-2 border-purple-200">
                 <td className="py-3.5 px-4 text-purple-950 font-extrabold uppercase text-xs">9. LỢI NHUẬN RÒNG SAU THUẾ ƯỚC TÍNH:</td>
                 <td colSpan={3} className="py-3.5 px-4"></td>
                 <td className="py-3.5 px-4 text-right text-purple-700 font-extrabold text-sm">{formatVND(finalNetProfitAfterTax)}</td>

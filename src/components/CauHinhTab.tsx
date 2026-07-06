@@ -150,47 +150,47 @@ export default function CauHinhTab({
   return (
     <div className="p-6 space-y-6 font-sans bg-transparent min-h-[calc(100vh-4rem)]">
       {/* Header and Title */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-100 pb-4">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-100 dark:border-slate-800/50 pb-4">
         <div>
-          <h1 className="text-xl font-bold text-gray-900 tracking-tight flex items-center gap-2">
+          <h1 className="text-xl font-bold text-gray-900 dark:text-white tracking-tight flex items-center gap-2">
             <Settings className="w-5 h-5 text-[#0a8251]" />
             Cấu hình Hệ Thống & Giao diện
           </h1>
-          <p className="text-xs text-gray-500 mt-0.5">Quản lý hồ sơ doanh nghiệp pháp lý, độ trong suốt ứng dụng và hình nền 3D sinh động</p>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Quản lý hồ sơ doanh nghiệp pháp lý, độ trong suốt ứng dụng và hình nền 3D sinh động</p>
         </div>
 
         {/* Tab Controllers */}
-        <div className="flex bg-gray-100/80 p-0.5 rounded-lg border border-gray-200">
-          <button
+        <div className="flex bg-gray-100 dark:bg-slate-800/80 p-0.5 rounded-lg border border-gray-200 dark:border-slate-800">
+          <motion.button whileTap={{ scale: 0.95 }}
             onClick={() => setActiveSubTab('profile')}
-            className={`flex items-center gap-1.5 px-4 py-1.5 rounded-md text-xs font-bold transition ${activeSubTab === 'profile' ? 'bg-white text-gray-950 shadow-xs' : 'text-gray-500 hover:text-gray-900'}`}
+            className={`flex items-center gap-1.5 px-4 py-1.5 rounded-md text-xs font-bold transition ${activeSubTab === 'profile' ? 'bg-white dark:bg-slate-900 text-gray-950 shadow-xs' : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:text-white'}`}
           >
             <Building className="w-3.5 h-3.5" />
             Thông tin hộ kinh doanh
-          </button>
-          <button
+          </motion.button>
+          <motion.button whileTap={{ scale: 0.95 }}
             onClick={() => setActiveSubTab('appearance')}
-            className={`flex items-center gap-1.5 px-4 py-1.5 rounded-md text-xs font-bold transition ${activeSubTab === 'appearance' ? 'bg-white text-gray-950 shadow-xs' : 'text-gray-500 hover:text-gray-900'}`}
+            className={`flex items-center gap-1.5 px-4 py-1.5 rounded-md text-xs font-bold transition ${activeSubTab === 'appearance' ? 'bg-white dark:bg-slate-900 text-gray-950 shadow-xs' : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:text-white'}`}
           >
             <Sliders className="w-3.5 h-3.5" />
             Giao diện & Hình nền
-          </button>
+          </motion.button>
         </div>
       </div>
 
       {activeSubTab === 'profile' ? (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 animate-in fade-in duration-200">
           {/* Profile edit card (Width 2) */}
-          <div className="lg:col-span-2 bg-white/90 backdrop-blur-md rounded-xl border border-gray-100 shadow-xs p-6 space-y-5">
+          <div className="lg:col-span-2 bg-white dark:bg-slate-900/90 backdrop-blur-md rounded-xl border border-gray-100 dark:border-slate-800/50 shadow-xs p-6 space-y-5">
             <div className="flex items-center gap-2 border-b pb-3.5">
               <Building className="w-5 h-5 text-[#0a8251]" />
-              <h3 className="text-xs font-extrabold text-gray-800 uppercase tracking-wider">Thông tin đăng ký hộ kinh doanh</h3>
+              <h3 className="text-xs font-extrabold text-gray-800 dark:text-gray-200 uppercase tracking-wider">Thông tin đăng ký hộ kinh doanh</h3>
             </div>
 
             <form onSubmit={handleFormSubmit} className="space-y-4 text-xs">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[11px] font-bold text-gray-500 mb-1">Tên Hộ kinh doanh / Showroom *</label>
+                  <label className="block text-[11px] font-bold text-gray-500 dark:text-gray-400 mb-1">Tên Hộ kinh doanh / Showroom *</label>
                   <div className="relative">
                     <Building className="w-4 h-4 text-gray-400 absolute left-3 top-2.5" />
                     <input
@@ -198,13 +198,13 @@ export default function CauHinhTab({
                       required
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="w-full bg-gray-50/50 border border-gray-200 rounded-lg pl-9 pr-3 py-2 text-xs focus:bg-white focus:ring-1 focus:ring-[#0a8251] outline-none"
+                      className="w-full bg-gray-50 dark:bg-slate-900/50/50 border border-gray-200 dark:border-slate-800 rounded-lg pl-9 pr-3 py-2 text-xs focus:bg-white dark:bg-slate-900 focus:ring-1 focus:ring-[#0a8251] outline-none"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-bold text-gray-500 mb-1">Mã số thuế đăng ký (MST) *</label>
+                  <label className="block text-[11px] font-bold text-gray-500 dark:text-gray-400 mb-1">Mã số thuế đăng ký (MST) *</label>
                   <div className="relative">
                     <FileText className="w-4 h-4 text-gray-400 absolute left-3 top-2.5" />
                     <input
@@ -212,7 +212,7 @@ export default function CauHinhTab({
                       required
                       value={mst}
                       onChange={(e) => setMst(e.target.value)}
-                      className="w-full bg-gray-50/50 border border-gray-200 rounded-lg pl-9 pr-3 py-2 text-xs focus:bg-white focus:ring-1 focus:ring-[#0a8251] outline-none font-mono font-bold"
+                      className="w-full bg-gray-50 dark:bg-slate-900/50/50 border border-gray-200 dark:border-slate-800 rounded-lg pl-9 pr-3 py-2 text-xs focus:bg-white dark:bg-slate-900 focus:ring-1 focus:ring-[#0a8251] outline-none font-mono font-bold"
                     />
                   </div>
                 </div>
@@ -220,7 +220,7 @@ export default function CauHinhTab({
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[11px] font-bold text-gray-500 mb-1">Chủ hộ / Người đại diện pháp luật *</label>
+                  <label className="block text-[11px] font-bold text-gray-500 dark:text-gray-400 mb-1">Chủ hộ / Người đại diện pháp luật *</label>
                   <div className="relative">
                     <User className="w-4 h-4 text-gray-400 absolute left-3 top-2.5" />
                     <input
@@ -228,13 +228,13 @@ export default function CauHinhTab({
                       required
                       value={representative}
                       onChange={(e) => setRepresentative(e.target.value)}
-                      className="w-full bg-gray-50/50 border border-gray-200 rounded-lg pl-9 pr-3 py-2 text-xs focus:bg-white focus:ring-1 focus:ring-[#0a8251] outline-none"
+                      className="w-full bg-gray-50 dark:bg-slate-900/50/50 border border-gray-200 dark:border-slate-800 rounded-lg pl-9 pr-3 py-2 text-xs focus:bg-white dark:bg-slate-900 focus:ring-1 focus:ring-[#0a8251] outline-none"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-bold text-gray-500 mb-1">Lĩnh vực hoạt động kinh doanh chính *</label>
+                  <label className="block text-[11px] font-bold text-gray-500 dark:text-gray-400 mb-1">Lĩnh vực hoạt động kinh doanh chính *</label>
                   <div className="relative">
                     <Settings className="w-4 h-4 text-gray-400 absolute left-3 top-2.5" />
                     <input
@@ -242,7 +242,7 @@ export default function CauHinhTab({
                       required
                       value={mainSector}
                       onChange={(e) => setMainSector(e.target.value)}
-                      className="w-full bg-gray-50/50 border border-gray-200 rounded-lg pl-9 pr-3 py-2 text-xs focus:bg-white focus:ring-1 focus:ring-[#0a8251] outline-none"
+                      className="w-full bg-gray-50 dark:bg-slate-900/50/50 border border-gray-200 dark:border-slate-800 rounded-lg pl-9 pr-3 py-2 text-xs focus:bg-white dark:bg-slate-900 focus:ring-1 focus:ring-[#0a8251] outline-none"
                     />
                   </div>
                 </div>
@@ -250,7 +250,7 @@ export default function CauHinhTab({
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[11px] font-bold text-gray-500 mb-1">Số điện thoại liên lạc showroom *</label>
+                  <label className="block text-[11px] font-bold text-gray-500 dark:text-gray-400 mb-1">Số điện thoại liên lạc showroom *</label>
                   <div className="relative">
                     <Phone className="w-4 h-4 text-gray-400 absolute left-3 top-2.5" />
                     <input
@@ -258,13 +258,13 @@ export default function CauHinhTab({
                       required
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      className="w-full bg-gray-50/50 border border-gray-200 rounded-lg pl-9 pr-3 py-2 text-xs focus:bg-white focus:ring-1 focus:ring-[#0a8251] outline-none font-mono"
+                      className="w-full bg-gray-50 dark:bg-slate-900/50/50 border border-gray-200 dark:border-slate-800 rounded-lg pl-9 pr-3 py-2 text-xs focus:bg-white dark:bg-slate-900 focus:ring-1 focus:ring-[#0a8251] outline-none font-mono"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-bold text-gray-500 mb-1">Email liên lạc hóa đơn *</label>
+                  <label className="block text-[11px] font-bold text-gray-500 dark:text-gray-400 mb-1">Email liên lạc hóa đơn *</label>
                   <div className="relative">
                     <Mail className="w-4 h-4 text-gray-400 absolute left-3 top-2.5" />
                     <input
@@ -272,14 +272,14 @@ export default function CauHinhTab({
                       required
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="w-full bg-gray-50/50 border border-gray-200 rounded-lg pl-9 pr-3 py-2 text-xs focus:bg-white focus:ring-1 focus:ring-[#0a8251] outline-none"
+                      className="w-full bg-gray-50 dark:bg-slate-900/50/50 border border-gray-200 dark:border-slate-800 rounded-lg pl-9 pr-3 py-2 text-xs focus:bg-white dark:bg-slate-900 focus:ring-1 focus:ring-[#0a8251] outline-none"
                     />
                   </div>
                 </div>
               </div>
 
               <div>
-                <label className="block text-[11px] font-bold text-gray-500 mb-1">Địa chỉ đăng ký showroom chính thức *</label>
+                <label className="block text-[11px] font-bold text-gray-500 dark:text-gray-400 mb-1">Địa chỉ đăng ký showroom chính thức *</label>
                 <div className="relative">
                   <MapPin className="w-4 h-4 text-gray-400 absolute left-3 top-2.5" />
                   <input
@@ -287,13 +287,13 @@ export default function CauHinhTab({
                     required
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
-                    className="w-full bg-gray-50/50 border border-gray-200 rounded-lg pl-9 pr-3 py-2 text-xs focus:bg-white focus:ring-1 focus:ring-[#0a8251] outline-none"
+                    className="w-full bg-gray-50 dark:bg-slate-900/50/50 border border-gray-200 dark:border-slate-800 rounded-lg pl-9 pr-3 py-2 text-xs focus:bg-white dark:bg-slate-900 focus:ring-1 focus:ring-[#0a8251] outline-none"
                   />
                 </div>
               </div>
 
               {/* Action buttons with success feedback indicator */}
-              <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+              <div className="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-slate-800/50">
                 <div>
                   {savedSuccess && (
                     <span className="flex items-center gap-1 text-[#0a8251] font-bold text-[11px] animate-in fade-in duration-200">
@@ -303,27 +303,27 @@ export default function CauHinhTab({
                   )}
                 </div>
 
-                <button
+                <motion.button whileTap={{ scale: 0.95 }}
                   type="submit"
                   className="flex items-center gap-1.5 px-4 py-2 bg-[#0a8251] hover:bg-[#075f3b] text-white font-bold rounded-lg transition"
                 >
                   <Save className="w-4 h-4" />
                   <span>Lưu thay đổi hồ sơ</span>
-                </button>
+                </motion.button>
               </div>
             </form>
           </div>
 
           {/* Informational sidebar (Width 1) */}
-          <div className="bg-white/90 backdrop-blur-md rounded-xl border border-gray-100 shadow-xs p-5 space-y-4 text-xs text-gray-600 leading-relaxed">
-            <span className="text-xs font-bold text-gray-800 uppercase tracking-wide block border-b pb-2">Giải pháp Fintab Cloud</span>
+          <div className="bg-white dark:bg-slate-900/90 backdrop-blur-md rounded-xl border border-gray-100 dark:border-slate-800/50 shadow-xs p-5 space-y-4 text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
+            <span className="text-xs font-bold text-gray-800 dark:text-gray-200 uppercase tracking-wide block border-b pb-2">Giải pháp Fintab Cloud</span>
             <p>
               Hệ thống Fintab đồng bộ hóa các hóa đơn bán hàng, dữ liệu nhập kho và lịch sử hạch toán thu chi của bạn lên điện toán đám mây bảo mật.
             </p>
-            <div className="p-3 bg-gray-50 border border-gray-100 rounded-lg space-y-1">
-              <p className="font-bold text-gray-800">Phiên bản: Fintab ERP Pro v3.4.2</p>
-              <p className="font-medium text-gray-500">Môi trường: Thử nghiệm Sandbox</p>
-              <p className="font-medium text-gray-500">Khách hàng: Hộ kinh doanh đồ gỗ mỹ nghệ Tây Nguyên</p>
+            <div className="p-3 bg-gray-50 dark:bg-slate-900/50 border border-gray-100 dark:border-slate-800/50 rounded-lg space-y-1">
+              <p className="font-bold text-gray-800 dark:text-gray-200">Phiên bản: Fintab ERP Pro v3.4.2</p>
+              <p className="font-medium text-gray-500 dark:text-gray-400">Môi trường: Thử nghiệm Sandbox</p>
+              <p className="font-medium text-gray-500 dark:text-gray-400">Khách hàng: Hộ kinh doanh đồ gỗ mỹ nghệ Tây Nguyên</p>
             </div>
             <p className="text-[10px] text-gray-400 italic">
               Mọi thông tin hạch toán chứng từ tuân thủ các quy chuẩn kế toán đơn giản cho các hộ kinh doanh theo Luật thuế Việt Nam hiện hành.
@@ -333,14 +333,14 @@ export default function CauHinhTab({
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 animate-in fade-in duration-200">
           {/* Main appearance setting area (Width 2) */}
-          <div className="lg:col-span-2 bg-white/95 backdrop-blur-md rounded-xl border border-gray-100 shadow-xs p-6 space-y-6">
+          <div className="lg:col-span-2 bg-white dark:bg-slate-900/95 backdrop-blur-md rounded-xl border border-gray-100 dark:border-slate-800/50 shadow-xs p-6 space-y-6">
             
             {/* Opacity Control Slider */}
-            <div className="space-y-3 pb-5 border-b border-gray-100">
+            <div className="space-y-3 pb-5 border-b border-gray-100 dark:border-slate-800/50">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Sliders className="w-4 h-4 text-[#0a8251]" />
-                  <span className="text-xs font-extrabold text-gray-800 uppercase tracking-wider">Độ trong suốt giao diện (Card Opacity)</span>
+                  <span className="text-xs font-extrabold text-gray-800 dark:text-gray-200 uppercase tracking-wider">Độ trong suốt giao diện (Card Opacity)</span>
                 </div>
                 <span className="px-2.5 py-0.5 rounded-full bg-[#eaf4f0] text-[#0a8251] font-bold text-[11px] font-mono">
                   {opacity}%
@@ -357,7 +357,7 @@ export default function CauHinhTab({
                   max="100"
                   value={opacity}
                   onChange={(e) => setOpacity(Number(e.target.value))}
-                  className="flex-1 h-2 bg-gray-100 rounded-lg appearance-none cursor-pointer accent-[#0a8251]"
+                  className="flex-1 h-2 bg-gray-100 dark:bg-slate-800 rounded-lg appearance-none cursor-pointer accent-[#0a8251]"
                 />
                 <span className="text-[10px] font-bold text-gray-400 font-mono">100% (Đặc)</span>
               </div>
@@ -365,50 +365,50 @@ export default function CauHinhTab({
 
             {/* Background selection */}
             <div className="space-y-4">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-100 pb-2">
-                <span className="text-xs font-extrabold text-gray-800 uppercase tracking-wider flex items-center gap-2">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-100 dark:border-slate-800/50 pb-2">
+                <span className="text-xs font-extrabold text-gray-800 dark:text-gray-200 uppercase tracking-wider flex items-center gap-2">
                   <Sparkles className="w-4 h-4 text-[#0a8251]" />
                   Cấu hình hình nền ứng dụng
                 </span>
               </div>
 
               {/* Category tabs */}
-              <div className="flex flex-wrap gap-1 bg-gray-50 p-1 rounded-lg border border-gray-100">
-                <button
+              <div className="flex flex-wrap gap-1 bg-gray-50 dark:bg-slate-900/50 p-1 rounded-lg border border-gray-100 dark:border-slate-800/50">
+                <motion.button whileTap={{ scale: 0.95 }}
                   onClick={() => setSelectedWallpaperCategory('image')}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-[11px] font-bold transition whitespace-nowrap ${selectedWallpaperCategory === 'image' ? 'bg-white text-[#0a8251] shadow-xs' : 'text-gray-500 hover:text-gray-900'}`}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-[11px] font-bold transition whitespace-nowrap ${selectedWallpaperCategory === 'image' ? 'bg-white dark:bg-slate-900 text-[#0a8251] shadow-xs' : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:text-white'}`}
                 >
                   <ImageIcon className="w-3.5 h-3.5" />
                   Ảnh tĩnh
-                </button>
-                <button
+                </motion.button>
+                <motion.button whileTap={{ scale: 0.95 }}
                   onClick={() => setSelectedWallpaperCategory('video')}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-[11px] font-bold transition whitespace-nowrap ${selectedWallpaperCategory === 'video' ? 'bg-white text-[#0a8251] shadow-xs' : 'text-gray-500 hover:text-gray-900'}`}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-[11px] font-bold transition whitespace-nowrap ${selectedWallpaperCategory === 'video' ? 'bg-white dark:bg-slate-900 text-[#0a8251] shadow-xs' : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:text-white'}`}
                 >
                   <VideoIcon className="w-3.5 h-3.5" />
                   Video động
-                </button>
-                <button
+                </motion.button>
+                <motion.button whileTap={{ scale: 0.95 }}
                   onClick={() => setSelectedWallpaperCategory('gradient')}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-[11px] font-bold transition whitespace-nowrap ${selectedWallpaperCategory === 'gradient' ? 'bg-white text-[#0a8251] shadow-xs' : 'text-gray-500 hover:text-gray-900'}`}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-[11px] font-bold transition whitespace-nowrap ${selectedWallpaperCategory === 'gradient' ? 'bg-white dark:bg-slate-900 text-[#0a8251] shadow-xs' : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:text-white'}`}
                 >
                   <Palette className="w-3.5 h-3.5" />
                   Dải màu Gradient
-                </button>
-                <button
+                </motion.button>
+                <motion.button whileTap={{ scale: 0.95 }}
                   onClick={() => setSelectedWallpaperCategory('pattern')}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-[11px] font-bold transition whitespace-nowrap ${selectedWallpaperCategory === 'pattern' ? 'bg-white text-[#0a8251] shadow-xs' : 'text-gray-500 hover:text-gray-900'}`}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-[11px] font-bold transition whitespace-nowrap ${selectedWallpaperCategory === 'pattern' ? 'bg-white dark:bg-slate-900 text-[#0a8251] shadow-xs' : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:text-white'}`}
                 >
                   <Layout className="w-3.5 h-3.5" />
                   Họa tiết độc đáo
-                </button>
-                <button
+                </motion.button>
+                <motion.button whileTap={{ scale: 0.95 }}
                   onClick={() => setSelectedWallpaperCategory('color')}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-[11px] font-bold transition whitespace-nowrap ${selectedWallpaperCategory === 'color' ? 'bg-white text-[#0a8251] shadow-xs' : 'text-gray-500 hover:text-gray-900'}`}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-[11px] font-bold transition whitespace-nowrap ${selectedWallpaperCategory === 'color' ? 'bg-white dark:bg-slate-900 text-[#0a8251] shadow-xs' : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:text-white'}`}
                 >
                   <HelpCircle className="w-3.5 h-3.5" />
                   Màu cơ bản
-                </button>
+                </motion.button>
               </div>
 
               {/* Selection Content Grid */}
@@ -423,7 +423,7 @@ export default function CauHinhTab({
                         <div 
                           key={index}
                           onClick={() => selectWallpaper('image', url)}
-                          className={`group relative aspect-video rounded-lg overflow-hidden border-2 cursor-pointer transition-all ${isSelected ? 'border-[#0a8251] shadow-md scale-[0.98]' : 'border-transparent hover:border-gray-200'}`}
+                          className={`group relative aspect-video rounded-lg overflow-hidden border-2 cursor-pointer transition-all ${isSelected ? 'border-[#0a8251] shadow-md scale-[0.98]' : 'border-transparent hover:border-gray-200 hover:scale-[1.02] dark:border-slate-800'}`}
                         >
                           <img 
                             src={url} 
@@ -450,7 +450,7 @@ export default function CauHinhTab({
                         <div 
                           key={index}
                           onClick={() => selectWallpaper('video', item.url)}
-                          className={`group relative aspect-video rounded-lg overflow-hidden border-2 cursor-pointer transition-all bg-gray-900 ${isSelected ? 'border-[#0a8251] shadow-md scale-[0.98]' : 'border-transparent hover:border-gray-200'}`}
+                          className={`group relative aspect-video rounded-lg overflow-hidden border-2 cursor-pointer transition-all bg-gray-900 ${isSelected ? 'border-[#0a8251] shadow-md scale-[0.98]' : 'border-transparent hover:border-gray-200 hover:scale-[1.02] dark:border-slate-800'}`}
                         >
                           {/* If a thumbnail exists, show it, otherwise load a low-priority video preview on hover */}
                           {item.thumbnail ? (
@@ -497,7 +497,7 @@ export default function CauHinhTab({
                         <div 
                           key={index}
                           onClick={() => selectWallpaper('gradient', grad)}
-                          className={`relative h-16 rounded-lg border-2 cursor-pointer transition-all ${isSelected ? 'border-[#0a8251] shadow-md scale-[0.98]' : 'border-transparent hover:border-gray-200'}`}
+                          className={`relative h-16 rounded-lg border-2 cursor-pointer transition-all ${isSelected ? 'border-[#0a8251] shadow-md scale-[0.98]' : 'border-transparent hover:border-gray-200 hover:scale-[1.02] dark:border-slate-800'}`}
                           style={{ background: grad }}
                         >
                           <div className="absolute inset-0 flex items-center justify-between px-3 text-white">
@@ -523,7 +523,7 @@ export default function CauHinhTab({
                         <div 
                           key={index}
                           onClick={() => selectWallpaper('pattern', item.id)}
-                          className={`group relative h-24 rounded-lg overflow-hidden border-2 cursor-pointer transition-all ${isSelected ? 'border-[#0a8251] shadow-md scale-[0.98]' : 'border-transparent hover:border-gray-200'}`}
+                          className={`group relative h-24 rounded-lg overflow-hidden border-2 cursor-pointer transition-all ${isSelected ? 'border-[#0a8251] shadow-md scale-[0.98]' : 'border-transparent hover:border-gray-200 hover:scale-[1.02] dark:border-slate-800'}`}
                           style={item.style ? { 
                             backgroundImage: item.style, 
                             backgroundSize: item.id === 'dotted-pattern' ? '10px 10px' : '11px 11px',
@@ -562,10 +562,10 @@ export default function CauHinhTab({
                         <div 
                           key={index}
                           onClick={() => selectWallpaper('color', colorCode)}
-                          className={`relative aspect-square rounded-lg border-2 cursor-pointer transition-all flex flex-col items-center justify-center ${isSelected ? 'border-[#0a8251] shadow-md' : 'border-transparent hover:border-gray-200'}`}
+                          className={`relative aspect-square rounded-lg border-2 cursor-pointer transition-all flex flex-col items-center justify-center ${isSelected ? 'border-[#0a8251] shadow-md' : 'border-transparent hover:border-gray-200 hover:scale-[1.02] dark:border-slate-800'}`}
                           style={{ backgroundColor: colorCode }}
                         >
-                          <span className={`text-[9px] font-mono font-bold ${colorCode.includes('#f') || colorCode.includes('#e') ? 'text-gray-600' : 'text-gray-300'}`}>
+                          <span className={`text-[9px] font-mono font-bold ${colorCode.includes('#f') || colorCode.includes('#e') ? 'text-gray-600 dark:text-gray-400' : 'text-gray-300'}`}>
                             {colorCode}
                           </span>
                         </div>
@@ -580,18 +580,18 @@ export default function CauHinhTab({
           </div>
 
           {/* Real-time configuration report card (Width 1) */}
-          <div className="bg-white/95 backdrop-blur-md rounded-xl border border-gray-100 shadow-xs p-5 space-y-4 text-xs text-gray-600 leading-relaxed flex flex-col justify-between">
+          <div className="bg-white dark:bg-slate-900/95 backdrop-blur-md rounded-xl border border-gray-100 dark:border-slate-800/50 shadow-xs p-5 space-y-4 text-xs text-gray-600 dark:text-gray-400 leading-relaxed flex flex-col justify-between">
             <div className="space-y-4">
-              <span className="text-xs font-bold text-gray-800 uppercase tracking-wide block border-b pb-2">Thông số Giao diện</span>
+              <span className="text-xs font-bold text-gray-800 dark:text-gray-200 uppercase tracking-wide block border-b pb-2">Thông số Giao diện</span>
               
               <div className="space-y-3">
                 <div className="flex justify-between py-1 border-b border-gray-50">
                   <span className="text-gray-400 font-medium">Phông chữ:</span>
-                  <span className="font-bold text-gray-800">Play / Playfair Display</span>
+                  <span className="font-bold text-gray-800 dark:text-gray-200">Play / Playfair Display</span>
                 </div>
                 <div className="flex justify-between py-1 border-b border-gray-50">
                   <span className="text-gray-400 font-medium">Kiểu bo góc:</span>
-                  <span className="font-bold text-gray-800">10px (Mềm mại)</span>
+                  <span className="font-bold text-gray-800 dark:text-gray-200">10px (Mềm mại)</span>
                 </div>
                 <div className="flex justify-between py-1 border-b border-gray-50">
                   <span className="text-gray-400 font-medium">Khung viền 3D:</span>
@@ -599,15 +599,15 @@ export default function CauHinhTab({
                 </div>
                 <div className="flex justify-between py-1 border-b border-gray-50">
                   <span className="text-gray-400 font-medium">Đổi màu viền:</span>
-                  <span className="font-bold text-gray-500">Mỗi 1 phút</span>
+                  <span className="font-bold text-gray-500 dark:text-gray-400">Mỗi 1 phút</span>
                 </div>
                 <div className="flex justify-between py-1 border-b border-gray-50">
                   <span className="text-gray-400 font-medium">Độ trong suốt:</span>
-                  <span className="font-bold text-gray-800 font-mono">{opacity}% (Độ đục)</span>
+                  <span className="font-bold text-gray-800 dark:text-gray-200 font-mono">{opacity}% (Độ đục)</span>
                 </div>
                 <div className="flex justify-between py-1 border-b border-gray-50">
                   <span className="text-gray-400 font-medium">Kiểu hình nền:</span>
-                  <span className="font-bold text-gray-800 capitalize">
+                  <span className="font-bold text-gray-800 dark:text-gray-200 capitalize">
                     {bgType === 'image' && 'Ảnh tĩnh'}
                     {bgType === 'video' && 'Video động'}
                     {bgType === 'gradient' && 'Màu Gradient'}
@@ -618,13 +618,13 @@ export default function CauHinhTab({
               </div>
 
               {/* Info panel */}
-              <div className="p-3 bg-gray-50 border border-gray-100 rounded-lg text-[11px] text-gray-500">
-                <p className="font-bold text-gray-700 mb-1">💡 Mẹo nhỏ:</p>
+              <div className="p-3 bg-gray-50 dark:bg-slate-900/50 border border-gray-100 dark:border-slate-800/50 rounded-lg text-[11px] text-gray-500 dark:text-gray-400">
+                <p className="font-bold text-gray-700 dark:text-gray-300 mb-1">💡 Mẹo nhỏ:</p>
                 Sự kết hợp giữa phông chữ <strong className="text-[#0a8251]">Play</strong> lịch lãm và thiết kế kính mờ trong suốt (Glassmorphism) tạo nên không gian làm việc chuyên nghiệp, khơi gợi cảm hứng kinh doanh.
               </div>
             </div>
 
-            <p className="text-[10px] text-gray-400 italic border-t border-gray-100 pt-3">
+            <p className="text-[10px] text-gray-400 italic border-t border-gray-100 dark:border-slate-800/50 pt-3">
               Cài đặt giao diện được lưu trữ cục bộ (Local Storage) tự động, duy trì trạng thái yêu thích của bạn cho những phiên làm việc tiếp theo.
             </p>
           </div>

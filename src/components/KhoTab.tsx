@@ -101,17 +101,17 @@ export default function KhoTab({
   };
 
   return (
-    <div className="p-6 space-y-6 font-sans bg-gray-50/50 min-h-[calc(100vh-4rem)]">
+    <div className="p-6 space-y-6 font-sans bg-gray-50 dark:bg-slate-900/50/50 min-h-[calc(100vh-4rem)]">
       {/* Header */}
       <div>
-        <h1 className="text-xl font-bold text-gray-900 tracking-tight">Sổ kho & Tồn kho</h1>
-        <p className="text-xs text-gray-500 mt-0.5">Giám sát số dư nhập, xuất và giá trị tồn kho của các dòng vật tư sản phẩm</p>
+        <h1 className="text-xl font-bold text-gray-900 dark:text-white tracking-tight">Sổ kho & Tồn kho</h1>
+        <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Giám sát số dư nhập, xuất và giá trị tồn kho của các dòng vật tư sản phẩm</p>
       </div>
 
       {/* Grid Quick Indicators */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {/* Total value */}
-        <div className="bg-white p-4 rounded-xl border border-gray-100 flex items-center justify-between shadow-xs">
+        <div className="bg-white dark:bg-slate-900 p-4 rounded-xl border border-gray-100 dark:border-slate-800/50 flex items-center justify-between shadow-xs">
           <div>
             <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Tổng giá trị tồn kho (Giá vốn)</span>
             <p className="text-lg font-extrabold text-[#0a8251] mt-1">{formatVND(grandTotalInventoryValue)}</p>
@@ -122,7 +122,7 @@ export default function KhoTab({
         </div>
 
         {/* Total units */}
-        <div className="bg-white p-4 rounded-xl border border-gray-100 flex items-center justify-between shadow-xs">
+        <div className="bg-white dark:bg-slate-900 p-4 rounded-xl border border-gray-100 dark:border-slate-800/50 flex items-center justify-between shadow-xs">
           <div>
             <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Tổng số lượng sản phẩm lưu kho</span>
             <p className="text-lg font-extrabold text-blue-600 mt-1">{totalStockUnits} đơn vị</p>
@@ -135,7 +135,7 @@ export default function KhoTab({
         </div>
 
         {/* Warning stocks */}
-        <div className="bg-white p-4 rounded-xl border border-[#fee2e2] flex items-center justify-between shadow-xs">
+        <div className="bg-white dark:bg-slate-900 p-4 rounded-xl border border-[#fee2e2] flex items-center justify-between shadow-xs">
           <div>
             <span className="text-[10px] text-red-400 font-bold uppercase tracking-wider">Sản phẩm sắp hết hàng (&lt; 5 chiếc)</span>
             <p className="text-lg font-extrabold text-red-500 mt-1">{criticalStockCount} mặt hàng</p>
@@ -147,7 +147,7 @@ export default function KhoTab({
       </div>
 
       {/* Filter Options */}
-      <div className="bg-white p-4 rounded-xl border border-gray-100 shadow-xs flex items-center justify-between">
+      <div className="bg-white dark:bg-slate-900 p-4 rounded-xl border border-gray-100 dark:border-slate-800/50 shadow-xs flex items-center justify-between">
         <div className="w-full md:w-80 relative">
           <Search className="w-4 h-4 text-gray-400 absolute left-3 top-3" />
           <input
@@ -155,20 +155,20 @@ export default function KhoTab({
             placeholder="Tìm theo SKU hoặc tên sản phẩm..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-gray-50 border border-gray-200 rounded-lg pl-9 pr-4 py-2 text-xs focus:bg-white focus:ring-1 focus:ring-[#0a8251] focus:border-[#0a8251] transition outline-none"
+            className="w-full bg-gray-50 dark:bg-slate-900/50 border border-gray-200 dark:border-slate-800 rounded-lg pl-9 pr-4 py-2 text-xs focus:bg-white dark:bg-slate-900 focus:ring-1 focus:ring-[#0a8251] focus:border-[#0a8251] transition outline-none"
           />
         </div>
-        <div className="text-[11px] text-gray-500 font-medium">
+        <div className="text-[11px] text-gray-500 dark:text-gray-400 font-medium">
           Hiển thị <span className="text-[#0a8251] font-bold">{filteredProducts.length}</span> danh mục sản phẩm kho
         </div>
       </div>
 
       {/* Stock Ledger Table */}
-      <div className="bg-white rounded-xl border border-gray-100 shadow-xs overflow-hidden">
+      <div className="bg-white dark:bg-slate-900 rounded-xl border border-gray-100 dark:border-slate-800/50 shadow-xs overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="bg-gray-50 text-[10px] font-bold text-gray-500 uppercase tracking-wider border-b border-gray-100">
+              <tr className="bg-gray-50 dark:bg-slate-900/50 text-[10px] font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider border-b border-gray-100 dark:border-slate-800/50">
                 <th className="py-3.5 px-4">Mã SKU</th>
                 <th className="py-3.5 px-4">Tên hàng hóa / vật tư</th>
                 <th className="py-3.5 px-4">Đơn vị</th>
@@ -187,10 +187,10 @@ export default function KhoTab({
                 const isCritical = summary.currentStock < 5;
 
                 return (
-                  <tr key={p.id} className={`hover:bg-gray-50/50 transition ${isCritical ? 'bg-red-50/10' : ''}`}>
-                    <td className="py-3 px-4 font-mono font-bold text-gray-600 whitespace-nowrap">{p.sku}</td>
-                    <td className="py-3 px-4 font-semibold text-gray-900">{p.name}</td>
-                    <td className="py-3 px-4 text-gray-500 font-medium">{p.unit}</td>
+                  <tr key={p.id} className={`hover:bg-gray-50 dark:bg-slate-900/50/50 transition ${isCritical ? 'bg-red-50/10' : ''}`}>
+                    <td className="py-3 px-4 font-mono font-bold text-gray-600 dark:text-gray-400 whitespace-nowrap">{p.sku}</td>
+                    <td className="py-3 px-4 font-semibold text-gray-900 dark:text-white">{p.name}</td>
+                    <td className="py-3 px-4 text-gray-500 dark:text-gray-400 font-medium">{p.unit}</td>
                     
                     {/* Initial Stock (with edit capabilities inline) */}
                     <td className="py-3 px-4 text-center">
@@ -199,10 +199,10 @@ export default function KhoTab({
                           type="number"
                           value={tempStockValue}
                           onChange={(e) => setTempStockValue(Number(e.target.value))}
-                          className="w-16 bg-white border border-gray-300 rounded px-1.5 py-0.5 text-center text-xs focus:ring-1 focus:ring-[#0a8251] outline-none"
+                          className="w-16 bg-white dark:bg-slate-900 border border-gray-300 rounded px-1.5 py-0.5 text-center text-xs focus:ring-1 focus:ring-[#0a8251] outline-none"
                         />
                       ) : (
-                        <span className="font-bold text-gray-700">{p.initialStock}</span>
+                        <span className="font-bold text-gray-700 dark:text-gray-300">{p.initialStock}</span>
                       )}
                     </td>
 
@@ -218,14 +218,14 @@ export default function KhoTab({
 
                     {/* Current Stock */}
                     <td className="py-3 px-4 text-center font-extrabold">
-                      <span className={isCritical ? 'text-red-500 bg-red-50 px-2 py-0.5 rounded-full text-[10px] inline-flex items-center gap-1 font-bold border border-red-200' : 'text-gray-900'}>
+                      <span className={isCritical ? 'text-red-500 bg-red-50 px-2 py-0.5 rounded-full text-[10px] inline-flex items-center gap-1 font-bold border border-red-200' : 'text-gray-900 dark:text-white'}>
                         {summary.currentStock}
                         {isCritical && <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-ping"></span>}
                       </span>
                     </td>
 
                     {/* Financial Value of Item */}
-                    <td className="py-3 px-4 text-right font-extrabold text-gray-800 whitespace-nowrap">
+                    <td className="py-3 px-4 text-right font-extrabold text-gray-800 dark:text-gray-200 whitespace-nowrap">
                       {formatVND(summary.inventoryValue)}
                     </td>
 

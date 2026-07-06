@@ -219,12 +219,12 @@ export default function BanHangTab({
   };
 
   return (
-    <div className="p-6 space-y-6 font-sans bg-gray-50/50 min-h-[calc(100vh-4rem)]">
+    <div className="p-6 space-y-6 font-sans bg-gray-50 dark:bg-slate-900/50/50 min-h-[calc(100vh-4rem)]">
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-xl font-bold text-gray-900 tracking-tight">Hóa đơn bán hàng</h1>
-          <p className="text-xs text-gray-500 mt-0.5">Xử lý đơn xuất hàng, bán lẻ và quản lý công nợ khách hàng</p>
+          <h1 className="text-xl font-bold text-gray-900 dark:text-white tracking-tight">Hóa đơn bán hàng</h1>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Xử lý đơn xuất hàng, bán lẻ và quản lý công nợ khách hàng</p>
         </div>
 
         <button
@@ -238,7 +238,7 @@ export default function BanHangTab({
       </div>
 
       {/* Invoice Filter Options */}
-      <div className="bg-white p-4 rounded-xl border border-gray-100 shadow-xs flex items-center justify-between">
+      <div className="bg-white dark:bg-slate-900 p-4 rounded-xl border border-gray-100 dark:border-slate-800/50 shadow-xs flex items-center justify-between">
         <div className="w-full md:w-80 relative">
           <Search className="w-4 h-4 text-gray-400 absolute left-3 top-3" />
           <input
@@ -246,20 +246,20 @@ export default function BanHangTab({
             placeholder="Tìm theo số hóa đơn, tên khách hàng..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-gray-50 border border-gray-200 rounded-lg pl-9 pr-4 py-2 text-xs focus:bg-white focus:ring-1 focus:ring-[#0a8251] focus:border-[#0a8251] transition outline-none"
+            className="w-full bg-gray-50 dark:bg-slate-900/50 border border-gray-200 dark:border-slate-800 rounded-lg pl-9 pr-4 py-2 text-xs focus:bg-white dark:bg-slate-900 focus:ring-1 focus:ring-[#0a8251] focus:border-[#0a8251] transition outline-none"
           />
         </div>
-        <div className="text-[11px] text-gray-500 font-medium">
+        <div className="text-[11px] text-gray-500 dark:text-gray-400 font-medium">
           Tìm thấy <span className="text-[#0a8251] font-bold">{filteredInvoices.length}</span> hóa đơn xuất lẻ
         </div>
       </div>
 
       {/* Sales Invoice List */}
-      <div className="bg-white rounded-xl border border-gray-100 shadow-xs overflow-hidden">
+      <div className="bg-white dark:bg-slate-900 rounded-xl border border-gray-100 dark:border-slate-800/50 shadow-xs overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="bg-gray-50 text-[10px] font-bold text-gray-500 uppercase tracking-wider border-b border-gray-100">
+              <tr className="bg-gray-50 dark:bg-slate-900/50 text-[10px] font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider border-b border-gray-100 dark:border-slate-800/50">
                 <th className="py-3.5 px-4">Mã số hóa đơn</th>
                 <th className="py-3.5 px-4">Ngày xuất</th>
                 <th className="py-3.5 px-4">Đối tượng khách hàng</th>
@@ -271,14 +271,14 @@ export default function BanHangTab({
             </thead>
             <tbody className="divide-y divide-gray-100 text-xs">
               {filteredInvoices.map((inv) => (
-                <tr key={inv.id} className="hover:bg-gray-50/50 transition">
+                <tr key={inv.id} className="hover:bg-gray-50 dark:bg-slate-900/50/50 transition">
                   <td className="py-3 px-4 font-bold text-[#0a8251] whitespace-nowrap">{inv.code}</td>
-                  <td className="py-3 px-4 text-gray-500 whitespace-nowrap">{inv.date}</td>
-                  <td className="py-3 px-4 font-semibold text-gray-800">{inv.customerName}</td>
+                  <td className="py-3 px-4 text-gray-500 dark:text-gray-400 whitespace-nowrap">{inv.date}</td>
+                  <td className="py-3 px-4 font-semibold text-gray-800 dark:text-gray-200">{inv.customerName}</td>
                   <td className="py-3 px-4 text-right text-purple-600 font-bold whitespace-nowrap">
                     {formatVND(inv.totalVat)}
                   </td>
-                  <td className="py-3 px-4 text-right text-gray-900 font-extrabold whitespace-nowrap">
+                  <td className="py-3 px-4 text-right text-gray-900 dark:text-white font-extrabold whitespace-nowrap">
                     {formatVND(inv.totalAmount)}
                   </td>
                   <td className="py-3 px-4 text-center whitespace-nowrap">
@@ -298,7 +298,7 @@ export default function BanHangTab({
                     <div className="flex items-center justify-center gap-2">
                       <button
                         onClick={() => handleViewDetails(inv)}
-                        className="p-1 text-gray-500 hover:text-[#0a8251] rounded-md hover:bg-gray-50 transition"
+                        className="p-1 text-gray-500 dark:text-gray-400 hover:text-[#0a8251] rounded-md hover:bg-gray-50 dark:bg-slate-900/50 transition"
                         title="Xem chi tiết hóa đơn lẻ"
                       >
                         <Eye className="w-4 h-4" />
@@ -345,14 +345,14 @@ export default function BanHangTab({
       {/* Invoice Creation Modal */}
       {showInvoiceModal && (
         <div className="fixed inset-0 bg-black/40 backdrop-blur-xs flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+          <div className="bg-white dark:bg-slate-900 rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-150">
             {/* Header */}
             <div className="p-4 bg-[#0a8251] text-white flex items-center justify-between shrink-0">
               <div className="flex items-center gap-2">
                 <FileText className="w-5 h-5 text-green-100" />
                 <span className="font-bold text-sm">Lập Hóa Đơn Bán Hàng Lẻ (Chứng Từ Bán Ra)</span>
               </div>
-              <button onClick={() => setShowInvoiceModal(false)} className="hover:bg-white/20 p-1 rounded text-white transition">
+              <button onClick={() => setShowInvoiceModal(false)} className="hover:bg-white dark:bg-slate-900/20 p-1 rounded text-white transition">
                 <X className="w-4 h-4" />
               </button>
             </div>
@@ -362,11 +362,11 @@ export default function BanHangTab({
               {/* Customer & General Metadata info */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
-                  <label className="block text-[11px] font-bold text-gray-500 mb-1">Khách hàng phát sinh *</label>
+                  <label className="block text-[11px] font-bold text-gray-500 dark:text-gray-400 mb-1">Khách hàng phát sinh *</label>
                   <select
                     value={selectedCustomerId}
                     onChange={(e) => setSelectedCustomerId(e.target.value)}
-                    className="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-xs focus:bg-white focus:ring-1 focus:ring-[#0a8251] outline-none"
+                    className="w-full bg-gray-50 dark:bg-slate-900/50 border border-gray-200 dark:border-slate-800 rounded-lg px-3 py-2 text-xs focus:bg-white dark:bg-slate-900 focus:ring-1 focus:ring-[#0a8251] outline-none"
                     required
                   >
                     <option value="">-- Chọn khách hàng --</option>
@@ -376,17 +376,17 @@ export default function BanHangTab({
                   </select>
                 </div>
                 <div>
-                  <label className="block text-[11px] font-bold text-gray-500 mb-1">Ngày lập hóa đơn *</label>
+                  <label className="block text-[11px] font-bold text-gray-500 dark:text-gray-400 mb-1">Ngày lập hóa đơn *</label>
                   <input
                     type="date"
                     value={invoiceDate}
                     onChange={(e) => setInvoiceDate(e.target.value)}
-                    className="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-xs focus:bg-white focus:ring-1 focus:ring-[#0a8251] outline-none"
+                    className="w-full bg-gray-50 dark:bg-slate-900/50 border border-gray-200 dark:border-slate-800 rounded-lg px-3 py-2 text-xs focus:bg-white dark:bg-slate-900 focus:ring-1 focus:ring-[#0a8251] outline-none"
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-[11px] font-bold text-gray-500 mb-1">Nhóm ngành nghề thuế</label>
+                  <label className="block text-[11px] font-bold text-gray-500 dark:text-gray-400 mb-1">Nhóm ngành nghề thuế</label>
                   <div className="bg-blue-50 border border-blue-100 rounded-lg p-2 text-[11px] text-blue-800 leading-tight">
                     Tính toán thuế suất tự động theo TT40/2021/TT-BTC dựa trên từng vật tư.
                   </div>
@@ -396,11 +396,11 @@ export default function BanHangTab({
               {/* Items Line selector */}
               <div className="space-y-3">
                 <div className="flex items-center justify-between border-b pb-2">
-                  <span className="text-xs font-bold text-gray-800 uppercase tracking-wide">Chi tiết vật tư, hàng hóa xuất bán</span>
+                  <span className="text-xs font-bold text-gray-800 dark:text-gray-200 uppercase tracking-wide">Chi tiết vật tư, hàng hóa xuất bán</span>
                   <button
                     type="button"
                     onClick={handleAddItemRow}
-                    className="flex items-center gap-1 px-3 py-1 bg-gray-50 border border-gray-200 rounded-lg hover:bg-gray-100 text-[11px] font-bold text-[#0a8251] transition"
+                    className="flex items-center gap-1 px-3 py-1 bg-gray-50 dark:bg-slate-900/50 border border-gray-200 dark:border-slate-800 rounded-lg hover:bg-gray-100 dark:bg-slate-800 text-[11px] font-bold text-[#0a8251] transition"
                   >
                     <Plus className="w-3.5 h-3.5" />
                     <span>Thêm dòng vật tư</span>
@@ -409,14 +409,14 @@ export default function BanHangTab({
 
                 <div className="space-y-3 max-h-[220px] overflow-y-auto pr-1">
                   {items.map((item, index) => (
-                    <div key={index} className="flex flex-col md:flex-row gap-3 items-end md:items-center bg-gray-50 p-3 rounded-lg border border-gray-100 relative group">
+                    <div key={index} className="flex flex-col md:flex-row gap-3 items-end md:items-center bg-gray-50 dark:bg-slate-900/50 p-3 rounded-lg border border-gray-100 dark:border-slate-800/50 relative group">
                       {/* Product Selector */}
                       <div className="flex-1 min-w-[200px]">
                         <label className="block text-[10px] text-gray-400 font-bold mb-1">Tên vật tư hàng hóa</label>
                         <select
                           value={item.productId}
                           onChange={(e) => handleRowProductChange(index, e.target.value)}
-                          className="w-full bg-white border border-gray-200 rounded-md px-2.5 py-1.5 text-xs focus:ring-1 focus:ring-[#0a8251] outline-none"
+                          className="w-full bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 rounded-md px-2.5 py-1.5 text-xs focus:ring-1 focus:ring-[#0a8251] outline-none"
                         >
                           {products.map(p => (
                             <option key={p.id} value={p.id}>[{p.sku}] - {p.name} ({formatVND(p.sellingPrice)} / {p.unit})</option>
@@ -433,7 +433,7 @@ export default function BanHangTab({
                           min={1}
                           required
                           onChange={(e) => handleRowFieldChange(index, 'quantity', Number(e.target.value))}
-                          className="w-full bg-white border border-gray-200 rounded-md px-2.5 py-1 text-xs focus:ring-1 focus:ring-[#0a8251] outline-none text-center"
+                          className="w-full bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 rounded-md px-2.5 py-1 text-xs focus:ring-1 focus:ring-[#0a8251] outline-none text-center"
                         />
                       </div>
 
@@ -446,12 +446,12 @@ export default function BanHangTab({
                           min={0}
                           required
                           onChange={(e) => handleRowFieldChange(index, 'price', Number(e.target.value))}
-                          className="w-full bg-white border border-gray-200 rounded-md px-2.5 py-1 text-xs focus:ring-1 focus:ring-[#0a8251] outline-none text-right"
+                          className="w-full bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 rounded-md px-2.5 py-1 text-xs focus:ring-1 focus:ring-[#0a8251] outline-none text-right"
                         />
                       </div>
 
                       {/* Tax category indicator */}
-                      <div className="w-28 text-center bg-gray-100/50 border border-gray-200 py-1.5 rounded-md">
+                      <div className="w-28 text-center bg-gray-100 dark:bg-slate-800/50 border border-gray-200 dark:border-slate-800 py-1.5 rounded-md">
                         <span className="text-[10px] text-gray-400 font-bold block">Thuế suất GTGT</span>
                         <span className="text-[11px] font-extrabold text-purple-600">{item.vatRate}%</span>
                       </div>
@@ -459,7 +459,7 @@ export default function BanHangTab({
                       {/* Subtotal */}
                       <div className="w-32 text-right">
                         <span className="text-[10px] text-gray-400 font-bold block mb-1">Thành tiền trước thuế</span>
-                        <span className="text-xs font-bold text-gray-900 block pt-0.5">{formatVND(item.quantity * item.price)}</span>
+                        <span className="text-xs font-bold text-gray-900 dark:text-white block pt-0.5">{formatVND(item.quantity * item.price)}</span>
                       </div>
 
                       {/* Remove Row Button */}
@@ -467,7 +467,7 @@ export default function BanHangTab({
                         type="button"
                         onClick={() => handleRemoveItemRow(index)}
                         disabled={items.length === 1}
-                        className="p-1.5 text-gray-400 hover:text-red-500 rounded-md hover:bg-white disabled:opacity-30 self-end md:self-center transition"
+                        className="p-1.5 text-gray-400 hover:text-red-500 rounded-md hover:bg-white dark:bg-slate-900 disabled:opacity-30 self-end md:self-center transition"
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>
@@ -480,10 +480,10 @@ export default function BanHangTab({
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
                 <div className="space-y-4">
                   {/* Payment option */}
-                  <div className="bg-gray-50/50 p-4 rounded-xl border border-gray-100 space-y-3">
-                    <span className="text-xs font-bold text-gray-800 uppercase tracking-wide block">Trạng thái dòng tiền & quỹ</span>
+                  <div className="bg-gray-50 dark:bg-slate-900/50/50 p-4 rounded-xl border border-gray-100 dark:border-slate-800/50 space-y-3">
+                    <span className="text-xs font-bold text-gray-800 dark:text-gray-200 uppercase tracking-wide block">Trạng thái dòng tiền & quỹ</span>
                     <div className="flex gap-4">
-                      <label className="flex items-center gap-2 text-xs font-semibold text-gray-700 cursor-pointer">
+                      <label className="flex items-center gap-2 text-xs font-semibold text-gray-700 dark:text-gray-300 cursor-pointer">
                         <input
                           type="radio"
                           name="formIsPaid"
@@ -493,7 +493,7 @@ export default function BanHangTab({
                         />
                         <span>Khách trả ngay (Ghi nhận Phiếu Thu)</span>
                       </label>
-                      <label className="flex items-center gap-2 text-xs font-semibold text-gray-700 cursor-pointer">
+                      <label className="flex items-center gap-2 text-xs font-semibold text-gray-700 dark:text-gray-300 cursor-pointer">
                         <input
                           type="radio"
                           name="formIsPaid"
@@ -507,11 +507,11 @@ export default function BanHangTab({
 
                     {isPaid && (
                       <div className="pt-2 animate-in fade-in duration-150">
-                        <label className="block text-[10px] font-bold text-gray-500 mb-1">Tài khoản quỹ nhận tiền</label>
+                        <label className="block text-[10px] font-bold text-gray-500 dark:text-gray-400 mb-1">Tài khoản quỹ nhận tiền</label>
                         <select
                           value={formFundAccountId}
                           onChange={(e) => setFormFundAccountId(e.target.value)}
-                          className="w-full bg-white border border-gray-200 rounded-lg px-3 py-1.5 text-xs focus:ring-1 focus:ring-[#0a8251] outline-none"
+                          className="w-full bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 rounded-lg px-3 py-1.5 text-xs focus:ring-1 focus:ring-[#0a8251] outline-none"
                         >
                           {fundAccounts.map(fa => (
                             <option key={fa.id} value={fa.id}>{fa.name}</option>
@@ -523,33 +523,33 @@ export default function BanHangTab({
 
                   {/* Notes */}
                   <div>
-                    <label className="block text-[11px] font-bold text-gray-500 mb-1">Ghi chú, điều khoản giao hàng</label>
+                    <label className="block text-[11px] font-bold text-gray-500 dark:text-gray-400 mb-1">Ghi chú, điều khoản giao hàng</label>
                     <textarea
                       placeholder="Thông tin thêm..."
                       rows={2.5}
                       value={formNotes}
                       onChange={(e) => setFormNotes(e.target.value)}
-                      className="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-xs focus:bg-white focus:ring-1 focus:ring-[#0a8251] outline-none resize-none"
+                      className="w-full bg-gray-50 dark:bg-slate-900/50 border border-gray-200 dark:border-slate-800 rounded-lg px-3 py-2 text-xs focus:bg-white dark:bg-slate-900 focus:ring-1 focus:ring-[#0a8251] outline-none resize-none"
                     />
                   </div>
                 </div>
 
                 {/* Totals Table Calculations */}
-                <div className="bg-gray-50 p-4 rounded-xl border border-gray-200 text-xs space-y-3 font-medium">
-                  <span className="text-xs font-bold text-gray-800 uppercase tracking-wide block border-b pb-2">Tóm tắt thanh toán</span>
+                <div className="bg-gray-50 dark:bg-slate-900/50 p-4 rounded-xl border border-gray-200 dark:border-slate-800 text-xs space-y-3 font-medium">
+                  <span className="text-xs font-bold text-gray-800 dark:text-gray-200 uppercase tracking-wide block border-b pb-2">Tóm tắt thanh toán</span>
                   
                   <div className="flex justify-between items-center py-1">
-                    <span className="text-gray-500">Cộng tiền hàng trước thuế:</span>
-                    <span className="text-gray-900 font-bold">{formatVND(formSubtotal)}</span>
+                    <span className="text-gray-500 dark:text-gray-400">Cộng tiền hàng trước thuế:</span>
+                    <span className="text-gray-900 dark:text-white font-bold">{formatVND(formSubtotal)}</span>
                   </div>
 
                   <div className="flex justify-between items-center py-1">
-                    <span className="text-gray-500">Chiết khấu / Giảm giá (đ):</span>
+                    <span className="text-gray-500 dark:text-gray-400">Chiết khấu / Giảm giá (đ):</span>
                     <input
                       type="number"
                       value={discount}
                       onChange={(e) => setDiscount(Number(e.target.value))}
-                      className="w-32 bg-white border border-gray-200 rounded-md px-2 py-0.5 text-right font-bold text-red-500 outline-none"
+                      className="w-32 bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 rounded-md px-2 py-0.5 text-right font-bold text-red-500 outline-none"
                     />
                   </div>
 
@@ -558,8 +558,8 @@ export default function BanHangTab({
                     <span className="font-bold">{formatVND(formTotalVat)}</span>
                   </div>
 
-                  <div className="border-t pt-2.5 flex justify-between items-center text-sm font-extrabold text-gray-900 bg-white/40 p-2.5 rounded-lg border">
-                    <span className="text-gray-800">Tổng cộng tiền thanh toán:</span>
+                  <div className="border-t pt-2.5 flex justify-between items-center text-sm font-extrabold text-gray-900 dark:text-white bg-white dark:bg-slate-900/40 p-2.5 rounded-lg border">
+                    <span className="text-gray-800 dark:text-gray-200">Tổng cộng tiền thanh toán:</span>
                     <span className="text-xl text-[#0a8251]">{formatVND(formGrandTotal)}</span>
                   </div>
                 </div>
@@ -570,7 +570,7 @@ export default function BanHangTab({
                 <button
                   type="button"
                   onClick={() => setShowInvoiceModal(false)}
-                  className="px-5 py-2 border border-gray-200 text-xs font-bold rounded-lg hover:bg-gray-50 transition"
+                  className="px-5 py-2 border border-gray-200 dark:border-slate-800 text-xs font-bold rounded-lg hover:bg-gray-50 dark:bg-slate-900/50 transition"
                 >
                   Đóng lại
                 </button>
@@ -589,10 +589,10 @@ export default function BanHangTab({
       {/* Invoice Detail Printable Layout Modal */}
       {showDetailModal && selectedInvoice && (
         <div className="fixed inset-0 bg-black/40 backdrop-blur-xs flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-xl shadow-2xl max-w-2xl w-full overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+          <div className="bg-white dark:bg-slate-900 rounded-xl shadow-2xl max-w-2xl w-full overflow-hidden animate-in fade-in zoom-in-95 duration-150">
             {/* Modal action bar */}
-            <div className="bg-gray-50 px-6 py-3 border-b flex justify-between items-center">
-              <span className="text-xs font-bold text-gray-700">Mã hóa đơn: {selectedInvoice.code}</span>
+            <div className="bg-gray-50 dark:bg-slate-900/50 px-6 py-3 border-b flex justify-between items-center">
+              <span className="text-xs font-bold text-gray-700 dark:text-gray-300">Mã hóa đơn: {selectedInvoice.code}</span>
               <div className="flex gap-2">
                 <button 
                   onClick={() => window.print()} 
@@ -600,62 +600,62 @@ export default function BanHangTab({
                 >
                   In hóa đơn
                 </button>
-                <button onClick={() => setShowDetailModal(false)} className="p-1 rounded text-gray-400 hover:text-gray-900 hover:bg-gray-100 transition">
+                <button onClick={() => setShowDetailModal(false)} className="p-1 rounded text-gray-400 hover:text-gray-900 dark:text-white hover:bg-gray-100 dark:bg-slate-800 transition">
                   <X className="w-4.5 h-4.5" />
                 </button>
               </div>
             </div>
 
             {/* Invoce paper body */}
-            <div className="p-8 space-y-6 bg-white font-sans text-xs select-text">
+            <div className="p-8 space-y-6 bg-white dark:bg-slate-900 font-sans text-xs select-text">
               {/* Shop info / header */}
               <div className="flex justify-between border-b pb-5">
                 <div>
                   <h4 className="font-extrabold text-[#0a8251] text-base uppercase">Hộ Kinh Doanh Power Service One</h4>
-                  <p className="text-[11px] text-gray-500 mt-1">Mã số thuế: 342535453543</p>
-                  <p className="text-[11px] text-gray-500">Địa chỉ: 123 Đường Láng, Láng Hạ, Đống Đa, Hà Nội</p>
-                  <p className="text-[11px] text-gray-500">SĐT: 0987 654 321</p>
+                  <p className="text-[11px] text-gray-500 dark:text-gray-400 mt-1">Mã số thuế: 342535453543</p>
+                  <p className="text-[11px] text-gray-500 dark:text-gray-400">Địa chỉ: 123 Đường Láng, Láng Hạ, Đống Đa, Hà Nội</p>
+                  <p className="text-[11px] text-gray-500 dark:text-gray-400">SĐT: 0987 654 321</p>
                 </div>
                 <div className="text-right">
-                  <h3 className="text-sm font-extrabold text-gray-900 uppercase tracking-widest">HÓA ĐƠN BÁN LẺ</h3>
-                  <p className="text-xs text-gray-600 mt-1 font-mono font-bold">Số: {selectedInvoice.code}</p>
+                  <h3 className="text-sm font-extrabold text-gray-900 dark:text-white uppercase tracking-widest">HÓA ĐƠN BÁN LẺ</h3>
+                  <p className="text-xs text-gray-600 dark:text-gray-400 mt-1 font-mono font-bold">Số: {selectedInvoice.code}</p>
                   <p className="text-[11px] text-gray-400">Ngày lập: {selectedInvoice.date}</p>
                 </div>
               </div>
 
               {/* Client Info */}
               <div className="space-y-1">
-                <p className="font-bold text-gray-900 text-xs">THÔNG TIN KHÁCH HÀNG:</p>
-                <p className="text-gray-700">Tên đơn vị/Người mua: <strong className="text-gray-900">{selectedInvoice.customerName}</strong></p>
+                <p className="font-bold text-gray-900 dark:text-white text-xs">THÔNG TIN KHÁCH HÀNG:</p>
+                <p className="text-gray-700 dark:text-gray-300">Tên đơn vị/Người mua: <strong className="text-gray-900 dark:text-white">{selectedInvoice.customerName}</strong></p>
                 {customers.find(c => c.id === selectedInvoice.customerId)?.address && (
-                  <p className="text-gray-500">Địa chỉ: {customers.find(c => c.id === selectedInvoice.customerId)?.address}</p>
+                  <p className="text-gray-500 dark:text-gray-400">Địa chỉ: {customers.find(c => c.id === selectedInvoice.customerId)?.address}</p>
                 )}
                 {customers.find(c => c.id === selectedInvoice.customerId)?.phone && (
-                  <p className="text-gray-500">Số điện thoại liên hệ: {customers.find(c => c.id === selectedInvoice.customerId)?.phone}</p>
+                  <p className="text-gray-500 dark:text-gray-400">Số điện thoại liên hệ: {customers.find(c => c.id === selectedInvoice.customerId)?.phone}</p>
                 )}
               </div>
 
               {/* Grid List Products */}
-              <table className="w-full text-left border-collapse border border-gray-100 mt-4">
+              <table className="w-full text-left border-collapse border border-gray-100 dark:border-slate-800/50 mt-4">
                 <thead>
-                  <tr className="bg-gray-50 text-[10px] font-bold text-gray-600 uppercase border-b border-gray-100">
-                    <th className="py-2.5 px-3 border border-gray-100">STT</th>
-                    <th className="py-2.5 px-3 border border-gray-100">Tên vật tư hàng hóa</th>
-                    <th className="py-2.5 px-3 border border-gray-100 text-center">Số lượng</th>
-                    <th className="py-2.5 px-3 border border-gray-100 text-right">Đơn giá bán</th>
-                    <th className="py-2.5 px-3 border border-gray-100 text-center">Thuế GTGT</th>
-                    <th className="py-2.5 px-3 border border-gray-100 text-right">Thành tiền</th>
+                  <tr className="bg-gray-50 dark:bg-slate-900/50 text-[10px] font-bold text-gray-600 dark:text-gray-400 uppercase border-b border-gray-100 dark:border-slate-800/50">
+                    <th className="py-2.5 px-3 border border-gray-100 dark:border-slate-800/50">STT</th>
+                    <th className="py-2.5 px-3 border border-gray-100 dark:border-slate-800/50">Tên vật tư hàng hóa</th>
+                    <th className="py-2.5 px-3 border border-gray-100 dark:border-slate-800/50 text-center">Số lượng</th>
+                    <th className="py-2.5 px-3 border border-gray-100 dark:border-slate-800/50 text-right">Đơn giá bán</th>
+                    <th className="py-2.5 px-3 border border-gray-100 dark:border-slate-800/50 text-center">Thuế GTGT</th>
+                    <th className="py-2.5 px-3 border border-gray-100 dark:border-slate-800/50 text-right">Thành tiền</th>
                   </tr>
                 </thead>
-                <tbody className="text-gray-700">
+                <tbody className="text-gray-700 dark:text-gray-300">
                   {selectedInvoice.items.map((item, index) => (
-                    <tr key={index} className="hover:bg-gray-50/20">
-                      <td className="py-2 px-3 border border-gray-100 text-center">{index + 1}</td>
-                      <td className="py-2 px-3 border border-gray-100 font-semibold text-gray-900">{item.productName}</td>
-                      <td className="py-2 px-3 border border-gray-100 text-center font-bold">{item.quantity}</td>
-                      <td className="py-2 px-3 border border-gray-100 text-right">{formatVND(item.price)}</td>
-                      <td className="py-2 px-3 border border-gray-100 text-center font-bold text-purple-600">{item.vatRate}%</td>
-                      <td className="py-2 px-3 border border-gray-100 text-right font-extrabold">{formatVND(item.quantity * item.price)}</td>
+                    <tr key={index} className="hover:bg-gray-50 dark:bg-slate-900/50/20">
+                      <td className="py-2 px-3 border border-gray-100 dark:border-slate-800/50 text-center">{index + 1}</td>
+                      <td className="py-2 px-3 border border-gray-100 dark:border-slate-800/50 font-semibold text-gray-900 dark:text-white">{item.productName}</td>
+                      <td className="py-2 px-3 border border-gray-100 dark:border-slate-800/50 text-center font-bold">{item.quantity}</td>
+                      <td className="py-2 px-3 border border-gray-100 dark:border-slate-800/50 text-right">{formatVND(item.price)}</td>
+                      <td className="py-2 px-3 border border-gray-100 dark:border-slate-800/50 text-center font-bold text-purple-600">{item.vatRate}%</td>
+                      <td className="py-2 px-3 border border-gray-100 dark:border-slate-800/50 text-right font-extrabold">{formatVND(item.quantity * item.price)}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -665,8 +665,8 @@ export default function BanHangTab({
               <div className="w-full flex justify-end">
                 <div className="w-72 space-y-2 text-[11px] border-t pt-4">
                   <div className="flex justify-between">
-                    <span className="text-gray-500 font-medium">Tổng cộng tiền hàng:</span>
-                    <span className="text-gray-900 font-bold">
+                    <span className="text-gray-500 dark:text-gray-400 font-medium">Tổng cộng tiền hàng:</span>
+                    <span className="text-gray-900 dark:text-white font-bold">
                       {formatVND(selectedInvoice.items.reduce((sum, item) => sum + item.quantity * item.price, 0))}
                     </span>
                   </div>
@@ -690,12 +690,12 @@ export default function BanHangTab({
               {/* Signatures */}
               <div className="grid grid-cols-2 text-center pt-8 border-t border-dashed">
                 <div className="space-y-12">
-                  <p className="font-bold text-gray-600">NGƯỜI MUA HÀNG</p>
+                  <p className="font-bold text-gray-600 dark:text-gray-400">NGƯỜI MUA HÀNG</p>
                   <p className="text-gray-400 text-[10px] italic">(Ký, ghi rõ họ tên)</p>
                 </div>
                 <div className="space-y-12">
-                  <p className="font-bold text-gray-900 uppercase">Đại Diện Hộ Kinh Doanh</p>
-                  <p className="font-bold text-gray-800 pt-6">{businessProfile.representative}</p>
+                  <p className="font-bold text-gray-900 dark:text-white uppercase">Đại Diện Hộ Kinh Doanh</p>
+                  <p className="font-bold text-gray-800 dark:text-gray-200 pt-6">{businessProfile.representative}</p>
                 </div>
               </div>
             </div>

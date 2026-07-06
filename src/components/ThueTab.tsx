@@ -115,12 +115,12 @@ export default function ThueTab({
   };
 
   return (
-    <div className="p-6 space-y-6 font-sans bg-gray-50/50 min-h-[calc(100vh-4rem)]">
+    <div className="p-6 space-y-6 font-sans bg-gray-50 dark:bg-slate-900/50/50 min-h-[calc(100vh-4rem)]">
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-xl font-bold text-gray-900 tracking-tight">Thuế Hộ Kinh Doanh</h1>
-          <p className="text-xs text-gray-500 mt-0.5">Ước tính nghĩa vụ thuế GTGT & TNCN tự động theo Thông tư 40/2021/TT-BTC</p>
+          <h1 className="text-xl font-bold text-gray-900 dark:text-white tracking-tight">Thuế Hộ Kinh Doanh</h1>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Ước tính nghĩa vụ thuế GTGT & TNCN tự động theo Thông tư 40/2021/TT-BTC</p>
         </div>
 
         <button
@@ -146,7 +146,7 @@ export default function ThueTab({
       {/* Grid Overall Tax Liabilities */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {/* Total tax to pay */}
-        <div className="bg-white p-5 rounded-xl border border-purple-100 flex items-center justify-between shadow-xs">
+        <div className="bg-white dark:bg-slate-900 p-5 rounded-xl border border-purple-100 flex items-center justify-between shadow-xs">
           <div>
             <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Tổng thuế môn bài & khoán ước tính</span>
             <p className="text-xl font-extrabold text-purple-700 mt-1">{isTaxExempt ? '0 đ (Miễn thuế)' : formatVND(totalTaxLiability)}</p>
@@ -157,10 +157,10 @@ export default function ThueTab({
         </div>
 
         {/* VAT portion */}
-        <div className="bg-white p-5 rounded-xl border border-gray-100 flex items-center justify-between shadow-xs">
+        <div className="bg-white dark:bg-slate-900 p-5 rounded-xl border border-gray-100 dark:border-slate-800/50 flex items-center justify-between shadow-xs">
           <div>
             <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Thuế giá trị gia tăng (GTGT)</span>
-            <p className="text-lg font-extrabold text-gray-800 mt-1">{formatVND(totalVatLiability)}</p>
+            <p className="text-lg font-extrabold text-gray-800 dark:text-gray-200 mt-1">{formatVND(totalVatLiability)}</p>
           </div>
           <div className="w-9 h-9 rounded-lg bg-emerald-50 text-[#0a8251] flex items-center justify-center">
             <Calculator className="w-5 h-5" />
@@ -168,10 +168,10 @@ export default function ThueTab({
         </div>
 
         {/* PIT portion */}
-        <div className="bg-white p-5 rounded-xl border border-gray-100 flex items-center justify-between shadow-xs">
+        <div className="bg-white dark:bg-slate-900 p-5 rounded-xl border border-gray-100 dark:border-slate-800/50 flex items-center justify-between shadow-xs">
           <div>
             <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Thuế thu nhập cá nhân (TNCN)</span>
-            <p className="text-lg font-extrabold text-gray-800 mt-1">{formatVND(totalTncnLiability)}</p>
+            <p className="text-lg font-extrabold text-gray-800 dark:text-gray-200 mt-1">{formatVND(totalTncnLiability)}</p>
           </div>
           <div className="w-9 h-9 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center">
             <Calculator className="w-5 h-5" />
@@ -180,14 +180,14 @@ export default function ThueTab({
       </div>
 
       {/* Detailed Sectors Table */}
-      <div className="bg-white rounded-xl border border-gray-100 shadow-xs overflow-hidden">
+      <div className="bg-white dark:bg-slate-900 rounded-xl border border-gray-100 dark:border-slate-800/50 shadow-xs overflow-hidden">
         <div className="p-4 border-b border-gray-50">
-          <span className="text-xs font-bold text-gray-800">Biểu tổng hợp doanh thu chịu thuế phân loại theo Nhóm Ngành</span>
+          <span className="text-xs font-bold text-gray-800 dark:text-gray-200">Biểu tổng hợp doanh thu chịu thuế phân loại theo Nhóm Ngành</span>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="bg-gray-50 text-[10px] font-bold text-gray-500 uppercase tracking-wider border-b border-gray-100">
+              <tr className="bg-gray-50 dark:bg-slate-900/50 text-[10px] font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider border-b border-gray-100 dark:border-slate-800/50">
                 <th className="py-3 px-4">Nhóm Ngành Kinh Doanh (Circular 40)</th>
                 <th className="py-3 px-4 text-center">Thuế GTGT (%)</th>
                 <th className="py-3 px-4 text-center">Thuế TNCN (%)</th>
@@ -199,25 +199,25 @@ export default function ThueTab({
             </thead>
             <tbody className="divide-y divide-gray-100 text-xs">
               {sectorBreakdowns.map((sector) => (
-                <tr key={sector.type} className="hover:bg-gray-50/50 transition">
+                <tr key={sector.type} className="hover:bg-gray-50 dark:bg-slate-900/50/50 transition">
                   <td className="py-3 px-4 max-w-sm">
-                    <p className="font-bold text-gray-800 leading-tight">{sector.name}</p>
+                    <p className="font-bold text-gray-800 dark:text-gray-200 leading-tight">{sector.name}</p>
                     <p className="text-[10px] text-gray-400 mt-0.5 leading-tight italic">Ví dụ: {sector.example}</p>
                   </td>
                   <td className="py-3 px-4 text-center font-extrabold text-purple-600">{sector.vatRate}%</td>
                   <td className="py-3 px-4 text-center font-extrabold text-amber-600">{sector.tncnRate}%</td>
-                  <td className="py-3 px-4 text-right font-bold text-gray-900">{formatVND(sector.revenue)}</td>
-                  <td className="py-3 px-4 text-right text-gray-700">{formatVND(sector.vatAmount)}</td>
-                  <td className="py-3 px-4 text-right text-gray-700">{formatVND(sector.tncnAmount)}</td>
+                  <td className="py-3 px-4 text-right font-bold text-gray-900 dark:text-white">{formatVND(sector.revenue)}</td>
+                  <td className="py-3 px-4 text-right text-gray-700 dark:text-gray-300">{formatVND(sector.vatAmount)}</td>
+                  <td className="py-3 px-4 text-right text-gray-700 dark:text-gray-300">{formatVND(sector.tncnAmount)}</td>
                   <td className="py-3 px-4 text-right font-extrabold text-[#0a8251]">{formatVND(sector.totalTax)}</td>
                 </tr>
               ))}
-              <tr className="bg-gray-50/80 font-bold border-t">
-                <td className="py-3.5 px-4 text-gray-900 text-xs uppercase font-extrabold">Tổng cộng các ngành:</td>
+              <tr className="bg-gray-50 dark:bg-slate-900/50/80 font-bold border-t">
+                <td className="py-3.5 px-4 text-gray-900 dark:text-white text-xs uppercase font-extrabold">Tổng cộng các ngành:</td>
                 <td colSpan={2} className="py-3.5 px-4"></td>
                 <td className="py-3.5 px-4 text-right text-sm text-[#0a8251] font-extrabold">{formatVND(totalRevenueAllSectors)}</td>
-                <td className="py-3.5 px-4 text-right text-gray-800">{formatVND(totalVatLiability)}</td>
-                <td className="py-3.5 px-4 text-right text-gray-800">{formatVND(totalTncnLiability)}</td>
+                <td className="py-3.5 px-4 text-right text-gray-800 dark:text-gray-200">{formatVND(totalVatLiability)}</td>
+                <td className="py-3.5 px-4 text-right text-gray-800 dark:text-gray-200">{formatVND(totalTncnLiability)}</td>
                 <td className="py-3.5 px-4 text-right text-sm text-purple-700 font-extrabold">{formatVND(totalTaxLiability)}</td>
               </tr>
             </tbody>
@@ -228,10 +228,10 @@ export default function ThueTab({
       {/* Tax Returns Modal Form 01/CNKD layout */}
       {showTaxReturnModal && (
         <div className="fixed inset-0 bg-black/40 backdrop-blur-xs flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-xl shadow-2xl max-w-3xl w-full max-h-[90vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+          <div className="bg-white dark:bg-slate-900 rounded-xl shadow-2xl max-w-3xl w-full max-h-[90vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-150">
             {/* Header action bar */}
-            <div className="p-4 bg-gray-50 border-b flex justify-between items-center shrink-0">
-              <span className="text-xs font-bold text-gray-800 flex items-center gap-1.5">
+            <div className="p-4 bg-gray-50 dark:bg-slate-900/50 border-b flex justify-between items-center shrink-0">
+              <span className="text-xs font-bold text-gray-800 dark:text-gray-200 flex items-center gap-1.5">
                 <FileCheck className="w-4 h-4 text-[#0a8251]" />
                 Tờ khai Thuế Mẫu 01/CNKD (Kinh doanh cá thể)
               </span>
@@ -243,71 +243,71 @@ export default function ThueTab({
                   <Printer className="w-3.5 h-3.5" />
                   <span>In tờ khai</span>
                 </button>
-                <button onClick={() => setShowTaxReturnModal(false)} className="p-1 rounded text-gray-400 hover:text-gray-900 transition">
+                <button onClick={() => setShowTaxReturnModal(false)} className="p-1 rounded text-gray-400 hover:text-gray-900 dark:text-white transition">
                   <X className="w-4.5 h-4.5" />
                 </button>
               </div>
             </div>
 
             {/* Document sheet body */}
-            <div className="flex-1 overflow-y-auto p-8 bg-white text-xs select-text font-sans space-y-6">
+            <div className="flex-1 overflow-y-auto p-8 bg-white dark:bg-slate-900 text-xs select-text font-sans space-y-6">
               {/* National Emblem Header block */}
               <div className="text-center space-y-0.5">
-                <h4 className="font-extrabold text-[13px] tracking-wide text-gray-900">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</h4>
-                <p className="font-bold text-[11px] text-gray-800">Độc lập - Tự do - Hạnh phúc</p>
+                <h4 className="font-extrabold text-[13px] tracking-wide text-gray-900 dark:text-white">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</h4>
+                <p className="font-bold text-[11px] text-gray-800 dark:text-gray-200">Độc lập - Tự do - Hạnh phúc</p>
                 <div className="w-32 h-[1px] bg-gray-300 mx-auto my-2"></div>
-                <h3 className="text-sm font-extrabold text-gray-900 pt-1">TỜ KHAI THUẾ ĐỐI VỚI HỘ KINH DOANH, CÁ NHÂN KINH DOANH</h3>
-                <p className="text-[10px] text-gray-500 font-semibold italic">(Ban hành kèm theo Thông tư số 40/2021/TT-BTC ngày 01/06/2021 của Bộ Tài chính)</p>
-                <p className="text-xs font-bold text-gray-700 pt-2 font-mono">Kỳ tính thuế: Quý 3/2026</p>
+                <h3 className="text-sm font-extrabold text-gray-900 dark:text-white pt-1">TỜ KHAI THUẾ ĐỐI VỚI HỘ KINH DOANH, CÁ NHÂN KINH DOANH</h3>
+                <p className="text-[10px] text-gray-500 dark:text-gray-400 font-semibold italic">(Ban hành kèm theo Thông tư số 40/2021/TT-BTC ngày 01/06/2021 của Bộ Tài chính)</p>
+                <p className="text-xs font-bold text-gray-700 dark:text-gray-300 pt-2 font-mono">Kỳ tính thuế: Quý 3/2026</p>
               </div>
 
               {/* Section 1: Business Profile */}
               <div className="space-y-2">
-                <span className="font-bold text-gray-900 block border-b pb-1 uppercase tracking-wide">I. THÔNG TIN NGƯỜI NỘP THUẾ:</span>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-1.5 text-gray-700">
-                  <p>[01] Tên người nộp thuế: <strong className="text-gray-900">{businessProfile.representative}</strong></p>
-                  <p>[02] Mã số thuế: <strong className="text-gray-900 font-mono">{businessProfile.mst}</strong></p>
-                  <p>[03] Tên hộ kinh doanh: <strong className="text-gray-900">{businessProfile.name}</strong></p>
-                  <p>[04] Địa điểm kinh doanh: <strong className="text-gray-900">{businessProfile.address}</strong></p>
-                  <p>[05] Số điện thoại: <strong className="text-gray-900 font-mono">{businessProfile.phone}</strong></p>
-                  <p>[06] Ngành nghề kinh doanh chính: <strong className="text-gray-900">{businessProfile.mainSector}</strong></p>
+                <span className="font-bold text-gray-900 dark:text-white block border-b pb-1 uppercase tracking-wide">I. THÔNG TIN NGƯỜI NỘP THUẾ:</span>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-1.5 text-gray-700 dark:text-gray-300">
+                  <p>[01] Tên người nộp thuế: <strong className="text-gray-900 dark:text-white">{businessProfile.representative}</strong></p>
+                  <p>[02] Mã số thuế: <strong className="text-gray-900 dark:text-white font-mono">{businessProfile.mst}</strong></p>
+                  <p>[03] Tên hộ kinh doanh: <strong className="text-gray-900 dark:text-white">{businessProfile.name}</strong></p>
+                  <p>[04] Địa điểm kinh doanh: <strong className="text-gray-900 dark:text-white">{businessProfile.address}</strong></p>
+                  <p>[05] Số điện thoại: <strong className="text-gray-900 dark:text-white font-mono">{businessProfile.phone}</strong></p>
+                  <p>[06] Ngành nghề kinh doanh chính: <strong className="text-gray-900 dark:text-white">{businessProfile.mainSector}</strong></p>
                 </div>
               </div>
 
               {/* Section 2: Taxation breakdown table */}
               <div className="space-y-2">
-                <span className="font-bold text-gray-900 block border-b pb-1 uppercase tracking-wide">II. CHI TIẾT DOANH THU VÀ THUẾ PHẢI NỘP:</span>
+                <span className="font-bold text-gray-900 dark:text-white block border-b pb-1 uppercase tracking-wide">II. CHI TIẾT DOANH THU VÀ THUẾ PHẢI NỘP:</span>
                 
-                <table className="w-full text-left border-collapse border border-gray-200">
+                <table className="w-full text-left border-collapse border border-gray-200 dark:border-slate-800">
                   <thead>
-                    <tr className="bg-gray-50 text-[10px] font-bold text-gray-800 uppercase border-b border-gray-200">
-                      <th className="py-2 px-2 border border-gray-200">Chỉ tiêu nhóm ngành hàng</th>
-                      <th className="py-2 px-2 border border-gray-200 text-right">Doanh thu chịu thuế (đ)</th>
-                      <th className="py-2 px-2 border border-gray-200 text-center">Tỉ lệ thuế (%)</th>
-                      <th className="py-2 px-2 border border-gray-200 text-right">Thuế GTGT phải nộp (đ)</th>
-                      <th className="py-2 px-2 border border-gray-200 text-right">Thuế TNCN phải nộp (đ)</th>
+                    <tr className="bg-gray-50 dark:bg-slate-900/50 text-[10px] font-bold text-gray-800 dark:text-gray-200 uppercase border-b border-gray-200 dark:border-slate-800">
+                      <th className="py-2 px-2 border border-gray-200 dark:border-slate-800">Chỉ tiêu nhóm ngành hàng</th>
+                      <th className="py-2 px-2 border border-gray-200 dark:border-slate-800 text-right">Doanh thu chịu thuế (đ)</th>
+                      <th className="py-2 px-2 border border-gray-200 dark:border-slate-800 text-center">Tỉ lệ thuế (%)</th>
+                      <th className="py-2 px-2 border border-gray-200 dark:border-slate-800 text-right">Thuế GTGT phải nộp (đ)</th>
+                      <th className="py-2 px-2 border border-gray-200 dark:border-slate-800 text-right">Thuế TNCN phải nộp (đ)</th>
                     </tr>
                   </thead>
                   <tbody>
                     {sectorBreakdowns.map((sector, idx) => (
-                      <tr key={idx} className="hover:bg-gray-50/20">
-                        <td className="py-2 px-2 border border-gray-200 font-medium">
+                      <tr key={idx} className="hover:bg-gray-50 dark:bg-slate-900/50/20">
+                        <td className="py-2 px-2 border border-gray-200 dark:border-slate-800 font-medium">
                           {idx + 1}. {sector.name}
                         </td>
-                        <td className="py-2 px-2 border border-gray-200 text-right font-semibold text-gray-900">{formatVND(sector.revenue)}</td>
-                        <td className="py-2 px-2 border border-gray-200 text-center text-purple-700 font-bold">
+                        <td className="py-2 px-2 border border-gray-200 dark:border-slate-800 text-right font-semibold text-gray-900 dark:text-white">{formatVND(sector.revenue)}</td>
+                        <td className="py-2 px-2 border border-gray-200 dark:border-slate-800 text-center text-purple-700 font-bold">
                           GTGT: {sector.vatRate}% / TNCN: {sector.tncnRate}%
                         </td>
-                        <td className="py-2 px-2 border border-gray-200 text-right">{formatVND(sector.vatAmount)}</td>
-                        <td className="py-2 px-2 border border-gray-200 text-right">{formatVND(sector.tncnAmount)}</td>
+                        <td className="py-2 px-2 border border-gray-200 dark:border-slate-800 text-right">{formatVND(sector.vatAmount)}</td>
+                        <td className="py-2 px-2 border border-gray-200 dark:border-slate-800 text-right">{formatVND(sector.tncnAmount)}</td>
                       </tr>
                     ))}
-                    <tr className="bg-gray-50 font-bold">
-                      <td className="py-2.5 px-2 border border-gray-200 uppercase font-extrabold">TỔNG CỘNG NGHĨA VỤ:</td>
-                      <td className="py-2.5 px-2 border border-gray-200 text-right text-gray-900 font-extrabold">{formatVND(totalRevenueAllSectors)}</td>
-                      <td className="py-2.5 px-2 border border-gray-200 text-center text-purple-700">-</td>
-                      <td className="py-2.5 px-2 border border-gray-200 text-right">{formatVND(totalVatLiability)}</td>
-                      <td className="py-2.5 px-2 border border-gray-200 text-right">{formatVND(totalTncnLiability)}</td>
+                    <tr className="bg-gray-50 dark:bg-slate-900/50 font-bold">
+                      <td className="py-2.5 px-2 border border-gray-200 dark:border-slate-800 uppercase font-extrabold">TỔNG CỘNG NGHĨA VỤ:</td>
+                      <td className="py-2.5 px-2 border border-gray-200 dark:border-slate-800 text-right text-gray-900 dark:text-white font-extrabold">{formatVND(totalRevenueAllSectors)}</td>
+                      <td className="py-2.5 px-2 border border-gray-200 dark:border-slate-800 text-center text-purple-700">-</td>
+                      <td className="py-2.5 px-2 border border-gray-200 dark:border-slate-800 text-right">{formatVND(totalVatLiability)}</td>
+                      <td className="py-2.5 px-2 border border-gray-200 dark:border-slate-800 text-right">{formatVND(totalTncnLiability)}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -315,15 +315,15 @@ export default function ThueTab({
 
               {/* Section 3: Declaration Commitments */}
               <div className="space-y-4 pt-4 border-t border-dashed">
-                <p className="italic text-[11px] text-gray-600 leading-relaxed">
+                <p className="italic text-[11px] text-gray-600 dark:text-gray-400 leading-relaxed">
                   Tôi cam đoan số liệu khai trên đây là đúng sự thật và chịu trách nhiệm trước pháp luật về tính chính xác của số liệu đã kê khai./.
                 </p>
                 <div className="grid grid-cols-2 text-center">
                   <div></div>
                   <div className="space-y-12">
-                    <p className="text-[11px] text-gray-500 italic">Hà Nội, ngày 30 tháng 09 năm 2026</p>
-                    <p className="font-bold text-gray-900 uppercase">NGƯỜI NỘP THUẾ / ĐẠI DIỆN HỘ KINH DOANH</p>
-                    <p className="font-extrabold text-gray-800 pt-6">{businessProfile.representative}</p>
+                    <p className="text-[11px] text-gray-500 dark:text-gray-400 italic">Hà Nội, ngày 30 tháng 09 năm 2026</p>
+                    <p className="font-bold text-gray-900 dark:text-white uppercase">NGƯỜI NỘP THUẾ / ĐẠI DIỆN HỘ KINH DOANH</p>
+                    <p className="font-extrabold text-gray-800 dark:text-gray-200 pt-6">{businessProfile.representative}</p>
                   </div>
                 </div>
               </div>

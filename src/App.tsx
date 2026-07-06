@@ -1,4 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import CommandPalette from './components/CommandPalette';
+import { 
+  LayoutDashboard, Coins, ShoppingCart, ShoppingBag, 
+  Warehouse, Layers, FolderTree, Percent, TrendingUp, Scale, Settings, Briefcase
+} from 'lucide-react';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import OverviewTab from './components/OverviewTab';
@@ -12,6 +18,7 @@ import ThueTab from './components/ThueTab';
 import BaoCaoTab from './components/BaoCaoTab';
 import SoDuTab from './components/SoDuTab';
 import CauHinhTab from './components/CauHinhTab';
+import DuAnTab from './components/DuAnTab';
 
 import { 
   initialBusinessProfile, 
@@ -36,7 +43,49 @@ import {
 } from './types';
 
 export default function App() {
-  const [currentTab, setCurrentTab] = useState<string>('overview');
+  const getTabInfo = (id: string) => {
+    const tabs = [
+      { id: 'overview', title: 'Tổng quan', subtitle: 'Dashboard tổng hợp', icon: LayoutDashboard },
+      { id: 'duan', title: 'Dự án', subtitle: 'Quản lý dự án', icon: Briefcase },
+      { id: 'thuchi', title: 'Thu chi', subtitle: 'Quản lý thu chi', icon: Coins },
+      { id: 'banhang', title: 'Bán hàng', subtitle: 'Quản lý bán hàng', icon: ShoppingCart },
+      { id: 'muahang', title: 'Mua hàng', subtitle: 'Quản lý mua hàng', icon: ShoppingBag },
+      { id: 'kho', title: 'Kho', subtitle: 'Quản lý kho hàng', icon: Warehouse },
+      { id: 'tonghop', title: 'Tổng hợp', subtitle: 'Báo cáo tổng hợp', icon: Layers },
+      { id: 'danhmuc', title: 'Danh mục', subtitle: 'Quản lý danh mục', icon: FolderTree },
+      { id: 'thue', title: 'Thuế', subtitle: 'Báo cáo thuế', icon: Percent },
+      { id: 'baocao', title: 'Báo cáo', subtitle: 'Báo cáo doanh thu', icon: TrendingUp },
+      { id: 'sodu', title: 'Số dư đầu kỳ', subtitle: 'Quản lý số dư', icon: Scale },
+      { id: 'settings', title: 'Cài đặt', subtitle: 'Thiết lập hệ thống', icon: Settings },
+    ];
+    return tabs.find(t => t.id === id) || tabs[0];
+  };
+
+  const [currentTab, setCurrentTab] = useState<string>('duan');
+  const [theme, setTheme] = useState<'light' | 'dark' | 'hc'>(() => (localStorage.getItem('fintab_theme') as any) || 'light');
+  const [cmdOpen, setCmdOpen] = useState(false);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    root.classList.remove('dark', 'hc');
+    if (theme === 'dark') {
+      root.classList.add('dark');
+    } else if (theme === 'hc') {
+      root.classList.add('hc');
+    }
+  }, [theme]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        setCmdOpen(prev => !prev);
+      }
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
 
   // Preference states for wallpaper and card opacity
   const [bgType, setBgType] = useState<string>(() => localStorage.getItem('fintab_bgType') || 'color');
@@ -383,6 +432,8 @@ export default function App() {
             products={products}
           />
         );
+      case 'duan':
+        return <DuAnTab />;
       case 'thuchi':
         return (
           <ThuChiTab 
@@ -481,6 +532,8 @@ export default function App() {
       case 'settings':
         return (
           <CauHinhTab 
+            theme={theme}
+            setTheme={(t) => { setTheme(t); localStorage.setItem('fintab_theme', t); }}
             businessProfile={businessProfile}
             onUpdateBusinessProfile={handleUpdateBusinessProfile}
             bgType={bgType}
@@ -598,27 +651,48 @@ export default function App() {
 
       {/* Main Container Card with 3D shadow and 15px frame padding */}
       <div className="p-[15px] h-screen box-border relative z-10 flex items-center justify-center">
+        
         <div 
-          className="flex w-full h-full rounded-[10px] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.3),_0_8px_25px_rgba(0,0,0,0.15)] border-[3px] backdrop-blur-md transition-all duration-500"
+          className="flex w-full h-full rounded-[10px] overflow-hidden border backdrop-blur-md shadow-2xl transition-all duration-500 hc:backdrop-blur-none"
           style={{ 
-            animation: 'colorChange 60s infinite',
-            backgroundColor: `rgba(250, 250, 250, ${opacity / 100})`
+            animation: theme === 'hc' ? 'none' : 'colorChange 60s infinite',
+            backgroundColor: theme === 'dark' 
+              ? `rgba(15, 23, 42, ${opacity / 100})` 
+              : theme === 'hc' 
+                ? 'var(--color-slate-950, #020617)' 
+                : `rgba(250, 250, 250, ${opacity / 100})`
           }}
         >
+
           {/* Navigation Sidebar */}
           <Sidebar currentTab={currentTab} onTabChange={setCurrentTab} />
 
           {/* Main Layout Area */}
-          <div className="flex-1 flex flex-col min-w-0 h-full">
+          <div className="flex-1 flex flex-col min-w-0 h-full relative z-0">
             <Header 
               businessProfile={businessProfile}
               onChangeProfile={handleUpdateBusinessProfile}
+              currentTabInfo={getTabInfo(currentTab)}
             />
             
             {/* Scrollable Tab panel */}
-            <main className="flex-1 overflow-y-auto">
-              {renderTabContent()}
+            <main className="flex-1 overflow-y-auto px-6 pb-6 relative">
+              <div className="bg-white dark:bg-slate-900 rounded-[10px] shadow-sm border border-gray-100 dark:border-slate-800 min-h-full p-6 transition-colors">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentTab}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2 }}
+                    className="w-full h-full"
+                  >
+                    {renderTabContent()}
+                  </motion.div>
+                </AnimatePresence>
+              </div>
             </main>
+            <CommandPalette isOpen={cmdOpen} onClose={() => setCmdOpen(false)} onNavigate={setCurrentTab} />
           </div>
         </div>
       </div>

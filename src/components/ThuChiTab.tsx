@@ -126,12 +126,12 @@ export default function ThuChiTab({
   };
 
   return (
-    <div className="p-6 space-y-6 font-sans bg-gray-50/50 min-h-[calc(100vh-4rem)]">
+    <div className="p-6 space-y-6 font-sans bg-gray-50 dark:bg-slate-900/50/50 min-h-[calc(100vh-4rem)]">
       {/* Tab Title & Actions */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-xl font-bold text-gray-900 tracking-tight">Sổ quỹ & Thu chi</h1>
-          <p className="text-xs text-gray-500 mt-0.5">Quản lý dòng tiền mặt và ngân hàng của hộ kinh doanh</p>
+          <h1 className="text-xl font-bold text-gray-900 dark:text-white tracking-tight">Sổ quỹ & Thu chi</h1>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Quản lý dòng tiền mặt và ngân hàng của hộ kinh doanh</p>
         </div>
 
         <button
@@ -146,7 +146,7 @@ export default function ThuChiTab({
 
       {/* Financial Overview Tiles */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="bg-white p-4 rounded-xl border border-gray-100 flex items-center justify-between shadow-xs">
+        <div className="bg-white dark:bg-slate-900 p-4 rounded-xl border border-gray-100 dark:border-slate-800/50 flex items-center justify-between shadow-xs">
           <div>
             <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Tổng Thu (Lọc)</span>
             <p className="text-lg font-extrabold text-[#0a8251] mt-1">{formatVND(totalIn)}</p>
@@ -156,7 +156,7 @@ export default function ThuChiTab({
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-xl border border-gray-100 flex items-center justify-between shadow-xs">
+        <div className="bg-white dark:bg-slate-900 p-4 rounded-xl border border-gray-100 dark:border-slate-800/50 flex items-center justify-between shadow-xs">
           <div>
             <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Tổng Chi (Lọc)</span>
             <p className="text-lg font-extrabold text-red-500 mt-1">{formatVND(totalOut)}</p>
@@ -166,7 +166,7 @@ export default function ThuChiTab({
           </div>
         </div>
 
-        <div className="bg-white p-4 rounded-xl border border-gray-100 flex items-center justify-between shadow-xs">
+        <div className="bg-white dark:bg-slate-900 p-4 rounded-xl border border-gray-100 dark:border-slate-800/50 flex items-center justify-between shadow-xs">
           <div>
             <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Dòng tiền thuần (Lọc)</span>
             <p className={`text-lg font-extrabold mt-1 ${totalIn - totalOut >= 0 ? 'text-[#0a8251]' : 'text-red-500'}`}>
@@ -180,7 +180,7 @@ export default function ThuChiTab({
       </div>
 
       {/* Filter and Search Bar */}
-      <div className="bg-white p-4 rounded-xl border border-gray-100 shadow-xs flex flex-col md:flex-row gap-4 items-center justify-between">
+      <div className="bg-white dark:bg-slate-900 p-4 rounded-xl border border-gray-100 dark:border-slate-800/50 shadow-xs flex flex-col md:flex-row gap-4 items-center justify-between">
         <div className="w-full md:w-80 relative">
           <Search className="w-4 h-4 text-gray-400 absolute left-3 top-3" />
           <input
@@ -188,40 +188,40 @@ export default function ThuChiTab({
             placeholder="Tìm kiếm danh mục, người nhận, ghi chú..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-gray-50 border border-gray-200 rounded-lg pl-9 pr-4 py-2 text-xs focus:bg-white focus:ring-1 focus:ring-[#0a8251] focus:border-[#0a8251] transition outline-none"
+            className="w-full bg-gray-50 dark:bg-slate-900/50 border border-gray-200 dark:border-slate-800 rounded-lg pl-9 pr-4 py-2 text-xs focus:bg-white dark:bg-slate-900 focus:ring-1 focus:ring-[#0a8251] focus:border-[#0a8251] transition outline-none"
           />
         </div>
 
         <div className="w-full md:w-auto flex flex-wrap gap-3 items-center">
           {/* Group Filter */}
-          <div className="flex bg-gray-50 border border-gray-200 rounded-lg p-0.5">
+          <div className="flex bg-gray-50 dark:bg-slate-900/50 border border-gray-200 dark:border-slate-800 rounded-lg p-0.5">
             <button
               onClick={() => setFilterType('all')}
-              className={`px-3 py-1 text-[11px] font-bold rounded-md transition ${filterType === 'all' ? 'bg-white text-gray-900 shadow-xs' : 'text-gray-500'}`}
+              className={`px-3 py-1 text-[11px] font-bold rounded-md transition ${filterType === 'all' ? 'bg-white dark:bg-slate-900 text-gray-900 dark:text-white shadow-xs' : 'text-gray-500 dark:text-gray-400'}`}
             >
               Tất cả
             </button>
             <button
               onClick={() => setFilterType('thu')}
-              className={`px-3 py-1 text-[11px] font-bold rounded-md transition ${filterType === 'thu' ? 'bg-white text-[#0a8251] shadow-xs' : 'text-gray-500'}`}
+              className={`px-3 py-1 text-[11px] font-bold rounded-md transition ${filterType === 'thu' ? 'bg-white dark:bg-slate-900 text-[#0a8251] shadow-xs' : 'text-gray-500 dark:text-gray-400'}`}
             >
               Thu
             </button>
             <button
               onClick={() => setFilterType('chi')}
-              className={`px-3 py-1 text-[11px] font-bold rounded-md transition ${filterType === 'chi' ? 'bg-white text-red-600 shadow-xs' : 'text-gray-500'}`}
+              className={`px-3 py-1 text-[11px] font-bold rounded-md transition ${filterType === 'chi' ? 'bg-white dark:bg-slate-900 text-red-600 shadow-xs' : 'text-gray-500 dark:text-gray-400'}`}
             >
               Chi
             </button>
           </div>
 
           {/* Account Filter */}
-          <div className="flex items-center gap-1.5 bg-gray-50 border border-gray-200 rounded-lg px-2.5 py-1">
+          <div className="flex items-center gap-1.5 bg-gray-50 dark:bg-slate-900/50 border border-gray-200 dark:border-slate-800 rounded-lg px-2.5 py-1">
             <Filter className="w-3.5 h-3.5 text-gray-400" />
             <select
               value={filterAccount}
               onChange={(e) => setFilterAccount(e.target.value)}
-              className="text-xs bg-transparent border-none text-gray-600 focus:ring-0 cursor-pointer py-0 font-medium"
+              className="text-xs bg-transparent border-none text-gray-600 dark:text-gray-400 focus:ring-0 cursor-pointer py-0 font-medium"
             >
               <option value="all">Mọi tài khoản quỹ</option>
               {fundAccounts.map(fa => (
@@ -233,11 +233,11 @@ export default function ThuChiTab({
       </div>
 
       {/* Ledger Records Table */}
-      <div className="bg-white rounded-xl border border-gray-100 shadow-xs overflow-hidden">
+      <div className="bg-white dark:bg-slate-900 rounded-xl border border-gray-100 dark:border-slate-800/50 shadow-xs overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="bg-gray-50 text-[10px] font-bold text-gray-500 uppercase tracking-wider border-b border-gray-100">
+              <tr className="bg-gray-50 dark:bg-slate-900/50 text-[10px] font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider border-b border-gray-100 dark:border-slate-800/50">
                 <th className="py-3.5 px-4">Ngày ghi nhận</th>
                 <th className="py-3.5 px-4">Phân loại</th>
                 <th className="py-3.5 px-4">Khoản mục / Hạng mục</th>
@@ -252,8 +252,8 @@ export default function ThuChiTab({
               {filteredTransactions.map((tx) => {
                 const faName = fundAccounts.find(fa => fa.id === tx.fundAccountId)?.name || 'Chưa liên kết';
                 return (
-                  <tr key={tx.id} className="hover:bg-gray-50/50 transition">
-                    <td className="py-3 px-4 font-medium text-gray-600 whitespace-nowrap">{tx.date}</td>
+                  <tr key={tx.id} className="hover:bg-gray-50 dark:bg-slate-900/50/50 transition">
+                    <td className="py-3 px-4 font-medium text-gray-600 dark:text-gray-400 whitespace-nowrap">{tx.date}</td>
                     <td className="py-3 px-4 whitespace-nowrap">
                       {tx.type === 'thu' ? (
                         <span className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-green-50 text-[#0a8251]">
@@ -265,13 +265,13 @@ export default function ThuChiTab({
                         </span>
                       )}
                     </td>
-                    <td className="py-3 px-4 font-semibold text-gray-900">{tx.category}</td>
+                    <td className="py-3 px-4 font-semibold text-gray-900 dark:text-white">{tx.category}</td>
                     <td className={`py-3 px-4 text-right font-extrabold whitespace-nowrap ${tx.type === 'thu' ? 'text-[#0a8251]' : 'text-red-500'}`}>
                       {tx.type === 'thu' ? '+' : '-'}{formatVND(tx.amount)}
                     </td>
-                    <td className="py-3 px-4 text-gray-600 font-medium whitespace-nowrap">{faName}</td>
-                    <td className="py-3 px-4 text-gray-600 whitespace-nowrap font-medium">{tx.contactName || 'Không xác định'}</td>
-                    <td className="py-3 px-4 text-gray-500 max-w-xs truncate" title={tx.notes}>{tx.notes}</td>
+                    <td className="py-3 px-4 text-gray-600 dark:text-gray-400 font-medium whitespace-nowrap">{faName}</td>
+                    <td className="py-3 px-4 text-gray-600 dark:text-gray-400 whitespace-nowrap font-medium">{tx.contactName || 'Không xác định'}</td>
+                    <td className="py-3 px-4 text-gray-500 dark:text-gray-400 max-w-xs truncate" title={tx.notes}>{tx.notes}</td>
                     <td className="py-3 px-4 text-center">
                       <button
                         onClick={() => {
@@ -304,11 +304,11 @@ export default function ThuChiTab({
       {/* Slip Modal Form */}
       {showSlipModal && (
         <div className="fixed inset-0 bg-black/40 backdrop-blur-xs flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-xl shadow-2xl max-w-md w-full overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+          <div className="bg-white dark:bg-slate-900 rounded-xl shadow-2xl max-w-md w-full overflow-hidden animate-in fade-in zoom-in-95 duration-150">
             {/* Header */}
             <div className="p-4 bg-[#0a8251] text-white flex items-center justify-between">
               <span className="font-bold text-sm">Lập Phiếu Chứng Từ Thu / Chi</span>
-              <button onClick={() => setShowSlipModal(false)} className="hover:bg-white/20 p-1 rounded text-white transition">
+              <button onClick={() => setShowSlipModal(false)} className="hover:bg-white dark:bg-slate-900/20 p-1 rounded text-white transition">
                 <X className="w-4 h-4" />
               </button>
             </div>
@@ -318,18 +318,18 @@ export default function ThuChiTab({
               {/* Type selector toggle button */}
               <div>
                 <label className="block text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-1.5">Loại chứng từ</label>
-                <div className="grid grid-cols-2 gap-2 bg-gray-100 p-1 rounded-lg">
+                <div className="grid grid-cols-2 gap-2 bg-gray-100 dark:bg-slate-800 p-1 rounded-lg">
                   <button
                     type="button"
                     onClick={() => handleTypeChange('thu')}
-                    className={`py-2 text-xs font-bold rounded-md transition ${formType === 'thu' ? 'bg-[#0a8251] text-white shadow-xs' : 'text-gray-500'}`}
+                    className={`py-2 text-xs font-bold rounded-md transition ${formType === 'thu' ? 'bg-[#0a8251] text-white shadow-xs' : 'text-gray-500 dark:text-gray-400'}`}
                   >
                     Phiếu Thu (+)
                   </button>
                   <button
                     type="button"
                     onClick={() => handleTypeChange('chi')}
-                    className={`py-2 text-xs font-bold rounded-md transition ${formType === 'chi' ? 'bg-red-600 text-white shadow-xs' : 'text-gray-500'}`}
+                    className={`py-2 text-xs font-bold rounded-md transition ${formType === 'chi' ? 'bg-red-600 text-white shadow-xs' : 'text-gray-500 dark:text-gray-400'}`}
                   >
                     Phiếu Chi (-)
                   </button>
@@ -338,37 +338,37 @@ export default function ThuChiTab({
 
               {/* Amount */}
               <div>
-                <label className="block text-[11px] font-bold text-gray-500 mb-1">Số tiền (đ) *</label>
+                <label className="block text-[11px] font-bold text-gray-500 dark:text-gray-400 mb-1">Số tiền (đ) *</label>
                 <input
                   type="number"
                   placeholder="Nhập số tiền..."
                   required
                   value={formAmount}
                   onChange={(e) => setFormAmount(e.target.value === '' ? '' : Number(e.target.value))}
-                  className="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-xs focus:bg-white focus:ring-1 focus:ring-[#0a8251] outline-none"
+                  className="w-full bg-gray-50 dark:bg-slate-900/50 border border-gray-200 dark:border-slate-800 rounded-lg px-3 py-2 text-xs focus:bg-white dark:bg-slate-900 focus:ring-1 focus:ring-[#0a8251] outline-none"
                 />
               </div>
 
               {/* Date */}
               <div>
-                <label className="block text-[11px] font-bold text-gray-500 mb-1">Ngày ghi nhận sổ *</label>
+                <label className="block text-[11px] font-bold text-gray-500 dark:text-gray-400 mb-1">Ngày ghi nhận sổ *</label>
                 <input
                   type="date"
                   required
                   value={formDate}
                   onChange={(e) => setFormDate(e.target.value)}
-                  className="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-xs focus:bg-white focus:ring-1 focus:ring-[#0a8251] outline-none"
+                  className="w-full bg-gray-50 dark:bg-slate-900/50 border border-gray-200 dark:border-slate-800 rounded-lg px-3 py-2 text-xs focus:bg-white dark:bg-slate-900 focus:ring-1 focus:ring-[#0a8251] outline-none"
                 />
               </div>
 
               {/* Category Hạng Mục */}
               <div>
-                <label className="block text-[11px] font-bold text-gray-500 mb-1">Hạng mục thu chi *</label>
+                <label className="block text-[11px] font-bold text-gray-500 dark:text-gray-400 mb-1">Hạng mục thu chi *</label>
                 <div className="flex gap-2">
                   <select
                     value={formCategory}
                     onChange={(e) => setFormCategory(e.target.value)}
-                    className="flex-1 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-xs focus:bg-white focus:ring-1 focus:ring-[#0a8251] outline-none"
+                    className="flex-1 bg-gray-50 dark:bg-slate-900/50 border border-gray-200 dark:border-slate-800 rounded-lg px-3 py-2 text-xs focus:bg-white dark:bg-slate-900 focus:ring-1 focus:ring-[#0a8251] outline-none"
                   >
                     {(formType === 'thu' ? thuCategories : chiCategories).map(cat => (
                       <option key={cat} value={cat}>{cat}</option>
@@ -382,18 +382,18 @@ export default function ThuChiTab({
                     placeholder="Nhập hạng mục tùy chỉnh mới..."
                     required
                     onChange={(e) => setFormCategory(e.target.value)}
-                    className="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-xs mt-2 focus:bg-white focus:ring-1 focus:ring-[#0a8251] outline-none"
+                    className="w-full bg-gray-50 dark:bg-slate-900/50 border border-gray-200 dark:border-slate-800 rounded-lg px-3 py-2 text-xs mt-2 focus:bg-white dark:bg-slate-900 focus:ring-1 focus:ring-[#0a8251] outline-none"
                   />
                 )}
               </div>
 
               {/* Fund account */}
               <div>
-                <label className="block text-[11px] font-bold text-gray-500 mb-1">Tài khoản quỹ nhận/chi *</label>
+                <label className="block text-[11px] font-bold text-gray-500 dark:text-gray-400 mb-1">Tài khoản quỹ nhận/chi *</label>
                 <select
                   value={formAccount}
                   onChange={(e) => setFormAccount(e.target.value)}
-                  className="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-xs focus:bg-white focus:ring-1 focus:ring-[#0a8251] outline-none"
+                  className="w-full bg-gray-50 dark:bg-slate-900/50 border border-gray-200 dark:border-slate-800 rounded-lg px-3 py-2 text-xs focus:bg-white dark:bg-slate-900 focus:ring-1 focus:ring-[#0a8251] outline-none"
                 >
                   {fundAccounts.map(fa => (
                     <option key={fa.id} value={fa.id}>{fa.name} ({fa.type === 'cash' ? 'Tiền mặt' : 'Ngân hàng'})</option>
@@ -403,25 +403,25 @@ export default function ThuChiTab({
 
               {/* Partner Name (Contact) */}
               <div>
-                <label className="block text-[11px] font-bold text-gray-500 mb-1">Đối tượng phát sinh (Khách hàng / NCC)</label>
+                <label className="block text-[11px] font-bold text-gray-500 dark:text-gray-400 mb-1">Đối tượng phát sinh (Khách hàng / NCC)</label>
                 <input
                   type="text"
                   placeholder="Tên đối tác hoặc cá nhân..."
                   value={formContactName}
                   onChange={(e) => setFormContactName(e.target.value)}
-                  className="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-xs focus:bg-white focus:ring-1 focus:ring-[#0a8251] outline-none"
+                  className="w-full bg-gray-50 dark:bg-slate-900/50 border border-gray-200 dark:border-slate-800 rounded-lg px-3 py-2 text-xs focus:bg-white dark:bg-slate-900 focus:ring-1 focus:ring-[#0a8251] outline-none"
                 />
               </div>
 
               {/* Notes */}
               <div>
-                <label className="block text-[11px] font-bold text-gray-500 mb-1">Diễn giải / Ghi chú</label>
+                <label className="block text-[11px] font-bold text-gray-500 dark:text-gray-400 mb-1">Diễn giải / Ghi chú</label>
                 <textarea
                   placeholder="Nội dung chi tiết..."
                   rows={2}
                   value={formNotes}
                   onChange={(e) => setFormNotes(e.target.value)}
-                  className="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-xs focus:bg-white focus:ring-1 focus:ring-[#0a8251] outline-none resize-none"
+                  className="w-full bg-gray-50 dark:bg-slate-900/50 border border-gray-200 dark:border-slate-800 rounded-lg px-3 py-2 text-xs focus:bg-white dark:bg-slate-900 focus:ring-1 focus:ring-[#0a8251] outline-none resize-none"
                 />
               </div>
 
@@ -429,7 +429,7 @@ export default function ThuChiTab({
                 <button
                   type="button"
                   onClick={() => setShowSlipModal(false)}
-                  className="px-4 py-2 border border-gray-200 text-xs font-bold rounded-lg hover:bg-gray-50 transition"
+                  className="px-4 py-2 border border-gray-200 dark:border-slate-800 text-xs font-bold rounded-lg hover:bg-gray-50 dark:bg-slate-900/50 transition"
                 >
                   Hủy bỏ
                 </button>
